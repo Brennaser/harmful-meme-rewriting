@@ -97,11 +97,11 @@ def main():
     setup_hf_login()
 
     rewriter = LlavaRewriter(llava_model_id=args.llava_model_id)
-    df = pd.read_csv(args.input_csv)
+    df = pd.read_json(args.input_csv, lines=True)
 
     rewrites = []
     for idx, row in df.iterrows():
-        image_path = row["image_path"]
+        image_path = row["img"]
         text = row["text"]
         print(f"[LLaVA] Row {idx} image {image_path}")
 
