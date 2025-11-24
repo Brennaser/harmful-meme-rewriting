@@ -8,23 +8,22 @@ from PIL import Image
 from transformers import AutoProcessor
 from transformers import LlavaForConditionalGeneration
 from huggingface_hub import login
+from typing import Union
 
 
 SYSTEM_PROMPT = (
     "You are a content safety editor for internet memes.\n"
-    "Your job is to rewrite short meme text so that it is safe and non offensive "
+    "Your job is to rewrite short meme text and generate new images so that the new meme is safe and non offensive "
     "while keeping the original meaning, target, and joke structure as much as possible.\n\n"
     "Rules:\n"
     "1. Remove or soften slurs, insults, and explicit hate toward any group or person.\n"
     "2. Keep the same basic situation, characters, and point of view.\n"
     "3. Keep the text short, punchy, and meme like.\n"
-    "4. Do not add new events or new facts. Small filler words are fine.\n"
-    "5. If the input text is already safe and non offensive, return it unchanged.\n"
-    "6. Reply with the rewritten meme text only."
+    "4. Reply with the rewritten meme text only."
 )
 
 
-def setup_hf_login(token: str | None = None):
+def setup_hf_login(token: Union[str, None] = None):
     if token is None:
         token = os.environ.get("HUGGINGFACE_TOKEN")
     if not token:
@@ -36,7 +35,7 @@ class LlavaRewriter:
     def __init__(
         self,
         llava_model_id: str = "llava-hf/llava-1.5-7b-hf",
-        device: str | None = None,
+        device: Union[str, None] = None,
     ):
         if device is None:
             device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -57,8 +56,6 @@ class LlavaRewriter:
         user_instruction = (
             f"{SYSTEM_PROMPT}\n\n"
             f"Original meme text: {text}\n\n"
-            "Task:\nRewrite this text so that it is safe and non offensive, "
-            "but still funny and as close as possible to the original meaning."
         )
 
         prompt = f"USER: <image>\n{user_instruction}\nASSISTANT:"
@@ -72,7 +69,7 @@ class LlavaRewriter:
         with torch.no_grad():
             out = self.model.generate(
                 **inputs,
-                max_new_tokens=80,
+                max_new_tokens=40,
                 do_sample=True,
                 top_p=0.9,
                 temperature=0.7,
