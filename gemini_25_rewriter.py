@@ -7,15 +7,13 @@ import google.generativeai as genai  # Google Gen AI SDK
 
 BASIC_PROMPT = (
     "You are a content safety editor for internet memes.\n"
-    "Your job is to rewrite short meme text so that it is safe and non offensive "
+    "Your job is to rewrite short meme text and generate new images so that the new meme is safe and non offensive "
     "while keeping the original meaning, target, and joke structure as much as possible.\n\n"
     "Rules:\n"
     "1. Remove or soften slurs, insults, and explicit hate toward any group or person.\n"
     "2. Keep the same basic situation, characters, and point of view.\n"
     "3. Keep the text short, punchy, and meme like.\n"
-    "4. Do not add new events or new facts. Small filler words are fine.\n"
-    "5. If the input text is already safe and non offensive, return it unchanged.\n"
-    "6. Reply with the rewritten meme text only."
+    "4. Reply with the rewritten meme text and image only."
 )
 
 
@@ -34,7 +32,6 @@ def get_gemini_client(api_key: str | None = None):
 
 def rewrite_with_gemini(
     model,
-    model_name: str,
     image_path: str,
     text: str,
     chain_of_thought: bool,
