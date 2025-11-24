@@ -2,10 +2,10 @@ import os
 import argparse
 import pandas as pd
 
-from google import genai  # Google Gen AI SDK
+import google.generativeai as genai  # Google Gen AI SDK
 
 
-SYSTEM_PROMPT = (
+BASIC_PROMPT = (
     "You are a content safety editor for internet memes.\n"
     "Your job is to rewrite short meme text so that it is safe and non offensive "
     "while keeping the original meaning, target, and joke structure as much as possible.\n\n"
@@ -19,34 +19,40 @@ SYSTEM_PROMPT = (
 )
 
 
-def get_gemini_client(api_key: str | None = None) -> genai.Client:
+def get_gemini_client(api_key: str | None = None):
     # The client will read GEMINI_API_KEY from the environment if not passed
     if api_key is None:
         api_key = os.environ.get("GEMINI_API_KEY")
     if not api_key:
         raise ValueError("Set GEMINI_API_KEY env var or pass api_key")
-    client = genai.Client(api_key=api_key)
-    return client
+    # client = genai.Client(api_key=api_key)
+    genai.configure(api_key=api_key)
+    gemini = genai.GenerativeModel('gemini-2.5-flash-lite')
+
+    return gemini
 
 
 def rewrite_with_gemini(
-    client: genai.Client,
+    model,
     model_name: str,
     image_path: str,
     text: str,
+    chain_of_thought: bool,
 ) -> str:
     with open(image_path, "rb") as f:
         image_bytes = f.read()
 
-    user_prompt = (
-        f"{SYSTEM_PROMPT}\n\n"
-        f"Original meme text:\n{text}\n\n"
-        "Task:\nRewrite this text so that it is safe and non offensive, "
-        "but still funny and as close as possible to the original meaning."
-    )
+    if chain_of_thought:
+        pass
+    else :
+        user_prompt = (
+            f"{BASIC_PROMPT}\n\n"
+            f"Original meme text:\n{text}\n\n"
+            "Task:\nRewrite this text so that it is safe and non offensive, "
+            "but still funny and as close as possible to the original meaning."
+        )
 
-    response = client.models.generate_content(
-        model=model_name,
+    response = model.generate_content(
         contents=[
             {
                 "role": "user",
@@ -73,12 +79,12 @@ def main():
     parser.add_argument("--model_name", default="gemini-2.5-flash")
     args = parser.parse_args()
 
-    client = get_gemini_client()
-    df = pd.read_csv(args.input_csv)
+    client = get_gemini_client("AIzaSyCcdpjNAeNeN3a2wPSLtdcbra_3rjU37oE")
+    df = pd.read_json(args.input_csv, lines=True)
 
     rewrites = []
     for idx, row in df.iterrows():
-        image_path = row["image_path"]
+        image_path = row["img"]
         text = row["text"]
         print(f"[Gemini] Row {idx} image {image_path}")
 
