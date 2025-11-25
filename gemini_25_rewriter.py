@@ -76,7 +76,7 @@ def main():
     parser.add_argument("--model_name", default="gemini-2.5-flash")
     args = parser.parse_args()
 
-    client = get_gemini_client("AIzaSyCcdpjNAeNeN3a2wPSLtdcbra_3rjU37oE")
+    client = get_gemini_client()
     df = pd.read_json(args.input_csv, lines=True)
 
     rewrites = []
