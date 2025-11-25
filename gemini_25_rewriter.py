@@ -4,18 +4,18 @@ import pandas as pd
 
 import google.generativeai as genai  # Google Gen AI SDK
 
-
 BASIC_PROMPT = (
     "You are a content safety editor for internet memes.\n"
-    "Your job is to rewrite short meme text and generate new images so that the new meme is safe and non offensive "
-    "while keeping the original meaning, target, and joke structure as much as possible.\n\n"
+    "Your task is to rewrite meme text and propose a new image description so that the meme becomes safe and non offensive.\n\n"
     "Rules:\n"
-    "1. Remove or soften slurs, insults, and explicit hate toward any group or person.\n"
-    "2. Keep the same basic situation, characters, and point of view.\n"
-    "3. Keep the text short, punchy, and meme like.\n"
-    "4. Reply with the rewritten meme text and image only."
+    "1. Remove or soften any slurs, insults, or explicit hate toward groups or individuals.\n"
+    "2. Keep the rewritten text short, punchy, and meme like.\n"
+    "3. Avoid adding new characters, new political content, or new offensive ideas.\n"
+    "4. Keep the core joke or message understandable after editing.\n"
+    "5. Output two fields only:\n"
+    " Safe_Text: the rewritten meme text\n"
+    " Safe_Image: a short description of a safe image replacement."
 )
-
 
 def get_gemini_client(api_key: str | None = None):
     # The client will read GEMINI_API_KEY from the environment if not passed
@@ -34,20 +34,33 @@ def rewrite_with_gemini(
     model,
     image_path: str,
     text: str,
-    chain_of_thought: bool,
+    few_shot_example: bool,
 ) -> str:
     with open(image_path, "rb") as f:
         image_bytes = f.read()
 
-    if chain_of_thought:
+    if few_shot_example:
         pass
-    else :
-        user_prompt = (
-            f"{BASIC_PROMPT}\n\n"
-            f"Original meme text:\n{text}\n\n"
-            "Task:\nRewrite this text so that it is safe and non offensive, "
-            "but still funny and as close as possible to the original meaning."
-        )
+    else:
+            user_prompt = (
+                f"{BASIC_PROMPT}\n\n"
+                "Here are some examples of how to rewrite unsafe memes into safe ones:\n\n"
+                "Example 1:\n"
+                "Original: \"when you forget you're retarded\"\n"
+                "Safe_Text: \"when you forget why you walked into the room\"\n"
+                "Safe_Image: \"A person standing in a room looking confused about what they came in for\"\n"
+                "Explanation: The rewrite removes the slur and turns it into a relatable forgetful moment for anyone.\n\n"
+                "Example 2:\n"
+                "Original: \"i'm not a racist my shadow is black\"\n"
+                "Safe_Text: \"I try to appreciate everyone and their differences\"\n"
+                "Safe_Image: \"A diverse group of friends smiling together\"\n"
+                "Explanation: The rewrite removes the racist logic and replaces it with an inclusive positive message.\n\n"
+                "Now rewrite the following meme in the same style:\n\n"
+                f"Original: \"{text}\"\n\n"
+                "Return your answer in exactly this format:\n"
+                "Safe_Text: ...\n"
+                "Safe_Image: ...\n"
+    )
 
     response = model.generate_content(
         contents=[
@@ -71,13 +84,13 @@ def rewrite_with_gemini(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_csv", default="memes.csv")
-    parser.add_argument("--output_csv", default="memes_gemini.csv")
+    parser.add_argument("--input_jsonl", default="train190_subset.jsonl")
+    parser.add_argument("--output_csv", default="memes_gemini-v2.csv")
     parser.add_argument("--model_name", default="gemini-2.5-flash")
     args = parser.parse_args()
 
     client = get_gemini_client()
-    df = pd.read_json(args.input_csv, lines=True)
+    df = pd.read_json(args.input_jsonl, lines=True)
 
     rewrites = []
     for idx, row in df.iterrows():
