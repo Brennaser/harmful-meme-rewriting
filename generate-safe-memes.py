@@ -2,7 +2,7 @@ import os
 import csv
 
 import torch
-from diffusers import StableDiffusionXLPipeline
+from diffusers import StableDiffusionPipeline
 import cv2
 import numpy as np
 
@@ -10,11 +10,14 @@ import numpy as np
 # CONFIG
 # -------------------------------------------------------------------
 
-MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
+# You can change this to SDXL if you want:
+# MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
+MODEL_ID = "digiplay/incursiosMemeDiffusion_v1.6"
+
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 INPUT_CSV = "memes_gemini_v2.csv"
-OUTPUT_DIR = "safe_memes_sdxl"
+OUTPUT_DIR = "safe_memes_out"
 
 
 # -------------------------------------------------------------------
@@ -23,10 +26,10 @@ OUTPUT_DIR = "safe_memes_sdxl"
 
 def load_model(model_id: str = MODEL_ID):
     print(f"[+] Loading model {model_id} on {DEVICE}")
-    pipe = StableDiffusionXLPipeline.from_pretrained(
+    pipe = StableDiffusionPipeline.from_pretrained(
         model_id,
         torch_dtype=torch.float16 if DEVICE == "cuda" else torch.float32,
-        use_safetensors=True,
+        safety_checker=None,
     )
     pipe = pipe.to(DEVICE)
     pipe.enable_attention_slicing()
@@ -35,33 +38,24 @@ def load_model(model_id: str = MODEL_ID):
 
 def generate_background(pipe, safe_image_prompt: str):
     """
-    Generate a clean meme style background using SDXL.
+    Generate a meme style background using the local diffusion model.
     """
     if not safe_image_prompt:
-        safe_image_prompt = "a harmless humorous situation"
+        safe_image_prompt = "a simple colorful meme background"
 
-    prompt = (
-        f"clean cartoon illustration of {safe_image_prompt}, "
-        "bright colors, simple background, no text"
-    )
+    prompt = f"Generate meme of {safe_image_prompt}"
 
-    negative = "text, words, letters, caption, typography, font, watermark, logo"
-
-    if DEVICE == "cuda":
-        autocast_device = "cuda"
-    else:
-        autocast_device = "cpu"
-
-    with torch.autocast(autocast_device):
+    with torch.autocast(DEVICE):
         pil_image = pipe(
             prompt=prompt,
-            negative_prompt=negative,
-            guidance_scale=8.5,
-            num_inference_steps=36,
+            negative_prompt="text, words, letters, caption, typography, font, watermark",
+            guidance_scale=7.5,
+            num_inference_steps=20,
             height=768,
             width=768,
         ).images[0]
 
+    # Convert PIL (RGB) -> OpenCV (BGR)
     img_rgb = np.array(pil_image)
     img_bgr = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
     return img_bgr
@@ -83,8 +77,13 @@ def extract_safe_text(raw: str) -> str:
     if raw is None:
         return ""
 
+    # keep only part before Safe_Image if it exists
     raw = raw.split("Safe_Image")[0]
+
+    # remove Safe_Text label
     raw = raw.replace("Safe_Text:", "").strip()
+
+    # strip outer quotes
     raw = raw.strip().strip('"').strip()
 
     return raw
@@ -102,17 +101,22 @@ def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
-    scale = max(1.2, h / 900.0 * 1.6)
-    thickness = max(2, int(h / 450.0))
+    # font scale and thickness relative to image size
+    scale = max(1.0, h / 800.0 * 1.2)
+    thickness = max(2, int(h / 400.0))
 
+    # text size
     (text_w, text_h), baseline = cv2.getTextSize(caption, font, scale, thickness)
 
-    bar_top = int(h * 0.8)
+    # bottom center
+    x = (w - text_w) // 2
+    y = h - 40  # 40 px above bottom
+
+    # black bar behind text
+    bar_top = max(0, y - text_h - 20)
     cv2.rectangle(img_bgr, (0, bar_top), (w, h), (0, 0, 0), -1)
 
-    y = bar_top + (h - bar_top - text_h) // 2 + text_h
-    x = max(10, (w - text_w) // 2)
-
+    # outline (black)
     for dx, dy in [(-2, 0), (2, 0), (0, -2), (0, 2)]:
         cv2.putText(
             img_bgr,
@@ -125,6 +129,7 @@ def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
             cv2.LINE_AA,
         )
 
+    # main text (white)
     cv2.putText(
         img_bgr,
         caption,
@@ -156,7 +161,8 @@ def process_csv(input_csv: str, output_dir: str, add_caption: bool = True):
             raw_rewrite = row.get("gemini_rewrite", "")
             safe_text = extract_safe_text(raw_rewrite)
 
-            safe_image_prompt = f"a cartoon character reacting to this idea: {safe_text}"
+            # you can later swap this to a real Safe_Image column if you add one
+            safe_image_prompt = "a harmless, humorous situation that matches the rewritten caption"
 
             try:
                 bg_bgr = generate_background(pipe, safe_image_prompt)
@@ -166,7 +172,7 @@ def process_csv(input_csv: str, output_dir: str, add_caption: bool = True):
                 else:
                     final_bgr = bg_bgr
 
-                out_path = os.path.join(output_dir, f"{meme_id}_safe_sdxl.png")
+                out_path = os.path.join(output_dir, f"{meme_id}_safe.png")
                 cv2.imwrite(out_path, final_bgr)
                 print(f"[✓] {meme_id} -> {out_path}")
             except Exception as e:
@@ -179,3 +185,4 @@ def process_csv(input_csv: str, output_dir: str, add_caption: bool = True):
 
 if __name__ == "__main__":
     process_csv(INPUT_CSV, OUTPUT_DIR, add_caption=True)
+
