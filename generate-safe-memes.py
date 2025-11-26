@@ -56,6 +56,7 @@ def generate_background(pipe, caption: str) -> np.ndarray:
         f'A clean simple meme style scene that matches the caption: "{caption}". '
         "Keep the image friendly and neutral. "
         "No offensive stereotypes."
+	"No words"
     )
 
     # SDXL Turbo is designed for very few steps
@@ -92,9 +93,6 @@ def extract_safe_text(raw: str) -> str:
 
 
 def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
-    """
-    Draw a single line caption at the bottom of the image using OpenCV.
-    """
     caption = caption.strip()
     if not caption:
         return img_bgr
@@ -103,39 +101,27 @@ def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
-    scale = max(1.0, h / 800.0 * 1.2)
-    thickness = max(2, int(h / 400.0))
+    # more balanced size
+    scale = max(0.6, h / 900.0)
+    thickness = max(1, int(h / 600.0))
 
     (text_w, text_h), baseline = cv2.getTextSize(caption, font, scale, thickness)
 
     x = (w - text_w) // 2
-    y = h - 40
+    y = h - 25  # closer to the bottom and cleaner layout
 
-    bar_top = max(0, y - text_h - 20)
+    # background bar
+    bar_top = max(0, y - text_h - 15)
     cv2.rectangle(img_bgr, (0, bar_top), (w, h), (0, 0, 0), -1)
 
+    # outline
     for dx, dy in [(-2, 0), (2, 0), (0, -2), (0, 2)]:
-        cv2.putText(
-            img_bgr,
-            caption,
-            (x + dx, y + dy),
-            font,
-            scale,
-            (0, 0, 0),
-            thickness + 2,
-            cv2.LINE_AA,
-        )
+        cv2.putText(img_bgr, caption, (x + dx, y + dy), font, scale,
+                    (0, 0, 0), thickness + 1, cv2.LINE_AA)
 
-    cv2.putText(
-        img_bgr,
-        caption,
-        (x, y),
-        font,
-        scale,
-        (255, 255, 255),
-        thickness,
-        cv2.LINE_AA,
-    )
+    # main text
+    cv2.putText(img_bgr, caption, (x, y), font, scale,
+                (255, 255, 255), thickness, cv2.LINE_AA)
 
     return img_bgr
 
