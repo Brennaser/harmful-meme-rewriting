@@ -1,8 +1,14 @@
 import os
+from huggingface_hub import login
+
+token = os.environ.get("HUGGINGFACE_TOKEN")
+login(token=token)
+
+import os
 import csv
 
 import torch
-from diffusers import StableDiffusionPipeline
+from diffusers import AutoPipelineForText2Image
 import cv2
 import numpy as np
 
@@ -10,53 +16,60 @@ import numpy as np
 # CONFIG
 # -------------------------------------------------------------------
 
-# You can change this to SDXL if you want:
-# MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
-MODEL_ID = "digiplay/incursiosMemeDiffusion_v1.6"
-
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 INPUT_CSV = "memes_gemini_v2.csv"
-OUTPUT_DIR = "safe_memes_out"
+OUTPUT_DIR = "safe_memes_out_v2"
 
 
 # -------------------------------------------------------------------
 # MODEL LOADING AND IMAGE GENERATION
 # -------------------------------------------------------------------
 
-def load_model(model_id: str = MODEL_ID):
-    print(f"[+] Loading model {model_id} on {DEVICE}")
-    pipe = StableDiffusionPipeline.from_pretrained(
-        model_id,
-        torch_dtype=torch.float16 if DEVICE == "cuda" else torch.float32,
-        safety_checker=None,
+def load_model():
+    """
+    Load SDXL Turbo once and return the pipeline.
+    This model is much lighter than SD3 medium and should fit on a 16 GB T4.
+    """
+
+    dtype = torch.float16 if DEVICE == "cuda" else torch.float32
+
+    pipe = AutoPipelineForText2Image.from_pretrained(
+        "stabilityai/sdxl-turbo",
+        torch_dtype=dtype,
+        use_safetensors=True,
     )
-    pipe = pipe.to(DEVICE)
-    pipe.enable_attention_slicing()
+
+    if DEVICE == "cuda":
+        pipe = pipe.to(DEVICE)
+        pipe.enable_attention_slicing("max")
+
     return pipe
 
 
-def generate_background(pipe, safe_image_prompt: str):
+def generate_background(pipe, caption: str) -> np.ndarray:
     """
-    Generate a meme style background using the local diffusion model.
+    Use SDXL Turbo to generate a meme background and return it as BGR array.
     """
-    if not safe_image_prompt:
-        safe_image_prompt = "a simple colorful meme background"
 
-    prompt = f"Generate meme of {safe_image_prompt}"
+    prompt = (
+        f'A clean simple meme style scene that matches the caption: "{caption}". '
+        "Keep the image friendly and neutral. "
+        "No offensive stereotypes."
+    )
 
-    with torch.autocast(DEVICE):
-        pil_image = pipe(
+    # SDXL Turbo is designed for very few steps
+    with torch.inference_mode():
+        result = pipe(
             prompt=prompt,
-            negative_prompt="text, words, letters, caption, typography, font, watermark",
-            guidance_scale=7.5,
-            num_inference_steps=20,
-            height=768,
-            width=768,
-        ).images[0]
+            num_inference_steps=4,
+            guidance_scale=0.0,
+            height=512,
+            width=512,
+        )
 
-    # Convert PIL (RGB) -> OpenCV (BGR)
-    img_rgb = np.array(pil_image)
+    pil_img = result.images[0]          # PIL RGB
+    img_rgb = np.array(pil_img)         # H x W x 3 RGB
     img_bgr = cv2.cvtColor(img_rgb, cv2.COLOR_RGB2BGR)
     return img_bgr
 
@@ -68,24 +81,13 @@ def generate_background(pipe, safe_image_prompt: str):
 def extract_safe_text(raw: str) -> str:
     """
     Take the gemini_rewrite string and return only the Safe_Text part.
-
-    Example input:
-      Safe_Text: "Be careful breathing! ..." Safe_Image: A person ...
-    Output:
-      Be careful breathing! ...
     """
     if raw is None:
         return ""
 
-    # keep only part before Safe_Image if it exists
     raw = raw.split("Safe_Image")[0]
-
-    # remove Safe_Text label
     raw = raw.replace("Safe_Text:", "").strip()
-
-    # strip outer quotes
     raw = raw.strip().strip('"').strip()
-
     return raw
 
 
@@ -101,22 +103,17 @@ def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
 
     font = cv2.FONT_HERSHEY_SIMPLEX
 
-    # font scale and thickness relative to image size
     scale = max(1.0, h / 800.0 * 1.2)
     thickness = max(2, int(h / 400.0))
 
-    # text size
     (text_w, text_h), baseline = cv2.getTextSize(caption, font, scale, thickness)
 
-    # bottom center
     x = (w - text_w) // 2
-    y = h - 40  # 40 px above bottom
+    y = h - 40
 
-    # black bar behind text
     bar_top = max(0, y - text_h - 20)
     cv2.rectangle(img_bgr, (0, bar_top), (w, h), (0, 0, 0), -1)
 
-    # outline (black)
     for dx, dy in [(-2, 0), (2, 0), (0, -2), (0, 2)]:
         cv2.putText(
             img_bgr,
@@ -129,7 +126,6 @@ def overlay_caption_opencv(img_bgr: np.ndarray, caption: str) -> np.ndarray:
             cv2.LINE_AA,
         )
 
-    # main text (white)
     cv2.putText(
         img_bgr,
         caption,
@@ -161,11 +157,10 @@ def process_csv(input_csv: str, output_dir: str, add_caption: bool = True):
             raw_rewrite = row.get("gemini_rewrite", "")
             safe_text = extract_safe_text(raw_rewrite)
 
-            # you can later swap this to a real Safe_Image column if you add one
-            safe_image_prompt = "a harmless, humorous situation that matches the rewritten caption"
+            image_prompt = safe_text or "a harmless humorous situation"
 
             try:
-                bg_bgr = generate_background(pipe, safe_image_prompt)
+                bg_bgr = generate_background(pipe, image_prompt)
 
                 if add_caption:
                     final_bgr = overlay_caption_opencv(bg_bgr, safe_text)

@@ -138,8 +138,8 @@ def main():
         new_item[f"gemma2_{args.mode}"] = generation
         results.append(new_item)
 
-    save_jsonl(results, args.output_jsonl)
-    print(f"Saved output to {args.output_jsonl}")
+    save_csv(results, args.output_jsonl)
+    print(f"Saved output to {args.output_csv}")
 
 
 if __name__ == "__main__":
