@@ -28,17 +28,80 @@ Outputs from these models are evaluated with:
 
 ---
 
+### Directory Overview
+
+**eval/**  
+Contains evaluation scripts and outputs, including the automatic metrics and CSV templates for human contextual-coherence review.
+
+**img/**  
+Subset of the hateful memes dataset (images + `train190_subset.jsonl`). Used as input to rewriting models.
+
+**meme_gen/**  
+Scripts for generating rewritten meme captions (Gemini, Gemma, LLaVA). Includes optional text-overlay tools.
+
+**models/**  
+Model wrappers for each rewriting approach:
+- Gemini 2.5
+- Gemma 2 + BLIP (multimodal)
+- LLaVA (vision-language)
+
+**results/**  
+All generated meme rewrites, cleaned outputs, and evaluated CSVs. Also includes directories storing full safe meme generations.
+
+**venv/**  
+Local virtual environment (not required for repo users).
+
+---
+
 ## Repository Structure
 
 ```text
 harmful-meme-rewriting/
 │
-├── meme_gen/          # Scripts to generate safe meme captions with each model
-├── eval/              # Evaluation scripts and notebooks
-├── models/            # Model specific configuration or helper code
-├── img/               # Meme image files (subset of hateful_memes)
-├── results/           # CSV files with model outputs and evaluation results
+├── eval/
+│   ├── evaluate-meme-metrics.py
+│   ├── manual_review_memes_gemini.csv
+│   ├── manual_review_memes_llava.csv
+│   └── model_metrics_summary.csv
+│
+├── img/
+│   ├── 02917.png
+│   ├── 02945.png
+│   ├── 04175.png
+│   ├── ...
+│   ├── 98734.png
+│   ├── train190_subset.jsonl
+│   └── (≈200+ meme images)
+│
+├── meme_gen/
+│   ├── generate-safe-memes.py
+│   └── text-overlay.py
+│
+├── models/
+│   ├── gemini_25_rewriter.py
+│   ├── gemma2_blip_rewriter.py
+│   └── llava_rewriter.py
+│
+├── results/
+│   ├── memes_gemini.csv
+│   ├── memes_gemini_fewshot.csv
+│   ├── memes_gemini_basic.csv
+│   ├── memes_gemma_basic.csv (duplicate naming earlier)
+│   ├── memes_llava.csv
+│   ├── memes_gemini_evaluated.csv
+│   ├── memes_llava_evaluated.csv
+│   ├── memesdalle_model/
+│   ├── safe_memes_out/
+│   ├── safe_memes_out_v2/
+│   └── safe_memes_with_text/
+│
+├── models/
+│   ├── gemini_25_rewriter.py
+│   ├── gemma2_blip_rewriter.py
+│   └── llava_rewriter.py
 │
 ├── .gitignore
-├── requirments.txt    # Python packages for the project
-└── README.md          # You are here
+├── requirments.txt
+├── venv/                  # local Python environment
+└── (git internal files)
+
