@@ -47,8 +47,8 @@ def generate_background(pipe, safe_image_prompt: str):
         pil_image = pipe(
             prompt=prompt,
             negative_prompt="text, words, letters, caption, typography, font, watermark",
-            guidance_scale=11,
-            num_inference_steps=50,
+            guidance_scale=9,
+            num_inference_steps=40,
             height=768,
             width=768,
         ).images[0]
