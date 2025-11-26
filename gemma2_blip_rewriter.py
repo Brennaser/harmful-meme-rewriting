@@ -9,9 +9,6 @@ from huggingface_hub import login
 print("Token in env:", os.environ.get("HUGGINGFACE_TOKEN") is not None)
 login(token=os.environ["HUGGINGFACE_TOKEN"])
 
-
-
-
 # ===========================
 # PROMPTS
 # ===========================
@@ -42,7 +39,6 @@ FEW_SHOT_PROMPT = (
     "Safe_Image: \"A diverse group of friends smiling together\"\n\n"
     "Now rewrite the following meme in the same style:\n"
 )
-
 
 # ===========================
 # Helper functions
@@ -102,6 +98,24 @@ def run_model(tokenizer, model, device, prompt, input_text, max_new_tokens):
 
     return decoded.strip()
 
+import csv
+
+def save_csv(rows, out_path):
+    """Save a list of dict items into a CSV file."""
+    if not rows:
+        print("Warning: No rows to save.")
+        return
+
+    # Collect all column names across all rows
+    keys = set()
+    for r in rows:
+        keys.update(r.keys())
+    keys = sorted(keys)
+
+    with open(out_path, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=keys)
+        writer.writeheader()
+        writer.writerows(rows)
 
 # ===========================
 # Main script
@@ -138,7 +152,8 @@ def main():
         new_item[f"gemma2_{args.mode}"] = generation
         results.append(new_item)
 
-    save_csv(results, args.output_jsonl)
+    # Save CSV (this was the broken part)
+    save_csv(results, args.output_csv)
     print(f"Saved output to {args.output_csv}")
 
 
