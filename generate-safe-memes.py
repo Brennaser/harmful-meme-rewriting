@@ -40,14 +40,17 @@ def generate_background(pipe, safe_image_prompt: str):
     """
     Generate a meme style background using the local diffusion model.
     """
+    if not safe_image_prompt:
+        safe_image_prompt = "a simple colorful meme background"
+
     prompt = f"Generate meme of {safe_image_prompt}"
 
     with torch.autocast(DEVICE):
         pil_image = pipe(
             prompt=prompt,
             negative_prompt="text, words, letters, caption, typography, font, watermark",
-            guidance_scale=11,
-            num_inference_steps=50,
+            guidance_scale=7.5,
+            num_inference_steps=20,
             height=768,
             width=768,
         ).images[0]
@@ -182,3 +185,4 @@ def process_csv(input_csv: str, output_dir: str, add_caption: bool = True):
 
 if __name__ == "__main__":
     process_csv(INPUT_CSV, OUTPUT_DIR, add_caption=True)
+
