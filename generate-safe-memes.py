@@ -13,6 +13,7 @@ import numpy as np
 # You can change this to SDXL if you want:
 # MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
 MODEL_ID = "digiplay/incursiosMemeDiffusion_v1.6"
+#MODEL_ID = "stabilityai/stable-diffusion-xl-base-1.0"
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
