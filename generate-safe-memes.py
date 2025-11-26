@@ -24,12 +24,21 @@ def load_model(model_id):
 
 def generate_background(pipe, safe_image_prompt):
     full_prompt = (
-        f"meme style illustration, {safe_image_prompt}, "
-        "clean background, space at bottom for caption."
+        f"clean cartoon illustration of {safe_image_prompt}, "
+        "simple meme background, bright colors, no text, no letters, no words"
     )
 
+    negative = "text, caption, words, letters, font, typography, symbols"
+
     with torch.autocast(DEVICE):
-        return pipe(full_prompt, guidance_scale=7.5, num_inference_steps=25).images[0]
+        return pipe(
+            prompt=full_prompt,
+            negative_prompt=negative,
+            guidance_scale=7.5,
+            num_inference_steps=30,
+            height=768,
+            width=768,
+        ).images[0]
 
 
 def overlay_caption(img, caption):
@@ -86,7 +95,9 @@ def process_csv(csv_path, output_dir, model_id=MODEL_ID):
 
         for row in reader:
             meme_id = row["id"]
-            safe_text = row["gemini_rewrite"].replace('Safe_Text:', '').replace('"', '').strip()
+            safe_text = row["gemini_rewrite"]
+            safe_text = safe_text.replace("Safe_Text:", "").strip()
+
 
             # universal safe image prompt
             safe_image = "funny meme background illustration"
