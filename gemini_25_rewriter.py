@@ -95,7 +95,7 @@ def rewrite_with_gemini(model, image_path: str, text: str, prompt_mode: str):
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_jsonl", default="img\\train190_subset.jsonl")
-    parser.add_argument("--output_csv", default="memes_gemini_v2.csv")
+    parser.add_argument("--output_csv", default="memes_gemini_v2_basic.csv")
     parser.add_argument("--model_name", default="gemini-2.5-flash")
     parser.add_argument("--image_root", default=".")
     parser.add_argument(
