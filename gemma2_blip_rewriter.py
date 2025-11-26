@@ -109,7 +109,7 @@ def run_model(tokenizer, model, device, prompt, input_text, max_new_tokens):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_jsonl", default="img\\train190_subset.jsonl")
+    parser.add_argument("--input_jsonl", default="img/train190_subset.jsonl")
     parser.add_argument("--output_csv", default="memes_gemma_basic.csv")
     parser.add_argument("--model_name", default="google/gemma-2-2b")
     parser.add_argument("--max_new_tokens", default=150, type=int)
