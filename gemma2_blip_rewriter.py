@@ -1,133 +1,145 @@
-import os
 import argparse
-
+import json
 import torch
-import pandas as pd
-from PIL import Image
+from transformers import AutoTokenizer, AutoModelForCausalLM
+from tqdm.auto import tqdm
 
-from transformers import (
-    BlipProcessor,
-    BlipForConditionalGeneration,
-    AutoTokenizer,
-    AutoModelForCausalLM,
-)
+import os
 from huggingface_hub import login
+print("Token in env:", os.environ.get("HUGGINGFACE_TOKEN") is not None)
+login(token=os.environ["HUGGINGFACE_TOKEN"])
 
 
-SYSTEM_PROMPT = (
+
+
+# ===========================
+# PROMPTS
+# ===========================
+
+BASIC_PROMPT = (
     "You are a content safety editor for internet memes.\n"
-    "Your job is to rewrite short meme text so that it is safe and non offensive "
-    "while keeping the original meaning, target, and joke structure as much as possible.\n\n"
+    "Your task is to rewrite meme text and propose a new image description so that the meme becomes safe and non offensive.\n\n"
     "Rules:\n"
-    "1. Remove or soften slurs, insults, and explicit hate toward any group or person.\n"
-    "2. Keep the same basic situation, characters, and point of view.\n"
-    "3. Keep the text short, punchy, and meme like.\n"
-    "4. Do not add new events or new facts. Small filler words are fine.\n"
-    "5. If the input text is already safe and non offensive, return it unchanged.\n"
-    "6. Reply with the rewritten meme text only."
+    "1. Remove or soften any slurs, insults, or explicit hate toward groups or individuals.\n"
+    "2. Keep the rewritten text short, punchy, and meme like.\n"
+    "3. Avoid adding new characters, new political content, or new offensive ideas.\n"
+    "4. Keep the core joke or message understandable after editing.\n"
+    "5. Output two fields only:\n"
+    "   Safe_Text: the rewritten text\n"
+    "   Safe_Image: a short description of a safe replacement image."
+)
+
+FEW_SHOT_PROMPT = (
+    f"{BASIC_PROMPT}\n\n"
+    "Here are some examples of how to rewrite unsafe memes into safe ones:\n\n"
+    "Example 1:\n"
+    "Original: \"when you forget you're retarded\"\n"
+    "Safe_Text: \"when you forget why you walked into the room\"\n"
+    "Safe_Image: \"A person standing in a room looking confused about what they came in for\"\n\n"
+    "Example 2:\n"
+    "Original: \"i'm not a racist my shadow is black\"\n"
+    "Safe_Text: \"I try to appreciate everyone and their differences\"\n"
+    "Safe_Image: \"A diverse group of friends smiling together\"\n\n"
+    "Now rewrite the following meme in the same style:\n"
 )
 
 
-def setup_hf_login(token: str | None = None):
-    if token is None:
-        token = os.environ.get("HUGGINGFACE_TOKEN")
-    if not token:
-        raise ValueError("Set HUGGINGFACE_TOKEN env var or pass token")
-    login(token)
+# ===========================
+# Helper functions
+# ===========================
+
+def load_jsonl(path):
+    items = []
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            items.append(json.loads(line))
+    return items
 
 
-class GemmaBlipRewriter:
-    def __init__(
-        self,
-        gemma_model_id: str = "google/gemma-2-2b-it",
-        device: str | None = None,
-    ):
-        if device is None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = device
+def save_jsonl(items, path):
+    with open(path, "w", encoding="utf-8") as f:
+        for x in items:
+            f.write(json.dumps(x, ensure_ascii=False) + "\n")
 
-        print("Loading BLIP captioning model...")
-        self.blip_processor = BlipProcessor.from_pretrained(
-            "Salesforce/blip-image-captioning-base"
-        )
-        self.blip_model = BlipForConditionalGeneration.from_pretrained(
-            "Salesforce/blip-image-captioning-base"
-        ).to(self.device)
 
-        print("Loading Gemma model...")
-        self.tokenizer = AutoTokenizer.from_pretrained(gemma_model_id)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            gemma_model_id,
-            torch_dtype=torch.float16 if self.device == "cuda" else torch.float32,
-            device_map="auto" if self.device == "cuda" else None,
-        ).to(self.device)
+def load_model(model_name):
+    device = "cuda" if torch.cuda.is_available() else "cpu"
 
-        self.model_name = gemma_model_id
+    tokenizer = AutoTokenizer.from_pretrained(model_name)
+    model = AutoModelForCausalLM.from_pretrained(
+        model_name,
+        torch_dtype=torch.bfloat16 if device == "cuda" else torch.float32,
+        device_map="auto" if device == "cuda" else None,
+    )
 
-    def caption_image(self, image_path: str) -> str:
-        image = Image.open(image_path).convert("RGB")
-        inputs = self.blip_processor(image, return_tensors="pt").to(self.device)
-        with torch.no_grad():
-            out = self.blip_model.generate(**inputs, max_new_tokens=40)
-        caption = self.blip_processor.decode(out[0], skip_special_tokens=True).strip()
-        return caption
+    return tokenizer, model, device
 
-    def rewrite(self, image_path: str, text: str) -> str:
-        caption = self.caption_image(image_path)
 
-        prompt = (
-            f"{SYSTEM_PROMPT}\n\n"
-            f"Image description: {caption}\n"
-            f"Original meme text: {text}\n\n"
-            "Task:\nRewrite this text so that it is safe and non offensive, "
-            "but still funny and as close as possible to the original meaning.\n"
+def run_model(tokenizer, model, device, prompt, input_text, max_new_tokens):
+    full = (
+        prompt
+        + "\nOriginal:\n"
+        + input_text
+        + "\n\nAnswer:\n"
+    )
+
+    encoded = tokenizer(full, return_tensors="pt").to(device)
+
+    with torch.no_grad():
+        output = model.generate(
+            **encoded,
+            max_new_tokens=max_new_tokens,
+            do_sample=True,
+            temperature=0.7,
+            top_p=0.9,
+            pad_token_id=tokenizer.eos_token_id,
         )
 
-        inputs = self.tokenizer(prompt, return_tensors="pt").to(self.device)
-        with torch.no_grad():
-            out = self.model.generate(
-                **inputs,
-                max_new_tokens=64,
-                do_sample=True,
-                top_p=0.9,
-                temperature=0.7,
-            )
+    decoded = tokenizer.decode(output[0], skip_special_tokens=True)
 
-        full = self.tokenizer.decode(out[0], skip_special_tokens=True)
-        rewritten = full[len(prompt):].strip()
-        if not rewritten:
-            rewritten = full.strip()
-        return rewritten
+    if decoded.startswith(full):
+        decoded = decoded[len(full):]
 
+    return decoded.strip()
+
+
+# ===========================
+# Main script
+# ===========================
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_csv", default="memes.csv")
-    parser.add_argument("--output_csv", default="memes_gemma2_blip.csv")
-    parser.add_argument("--gemma_model_id", default="google/gemma-2-2b-it")
+    parser.add_argument("--input_jsonl", default="img\\train190_subset.jsonl")
+    parser.add_argument("--output_csv", default="memes_gemma_basic.csv")
+    parser.add_argument("--model_name", default="google/gemma-2-2b")
+    parser.add_argument("--max_new_tokens", default=150, type=int)
+    parser.add_argument("--mode", choices=["basic", "fewshot"], default="basic")
     args = parser.parse_args()
 
-    setup_hf_login()
+    data = load_jsonl(args.input_jsonl)
+    print(f"Loaded {len(data)} memes")
 
-    rewriter = GemmaBlipRewriter(gemma_model_id=args.gemma_model_id)
-    df = pd.read_csv(args.input_csv)
+    tokenizer, model, device = load_model(args.model_name)
 
-    rewrites = []
-    for idx, row in df.iterrows():
-        image_path = row["image_path"]
-        text = row["text"]
-        print(f"[Gemma2 BLIP] Row {idx} image {image_path}")
+    prompt = BASIC_PROMPT if args.mode == "basic" else FEW_SHOT_PROMPT
+
+    results = []
+    for item in tqdm(data, desc=f"Running Gemma2 ({args.mode})"):
+        text = item.get("text", "")
 
         try:
-            new_text = rewriter.rewrite(image_path, text)
+            generation = run_model(
+                tokenizer, model, device, prompt, text, args.max_new_tokens
+            )
         except Exception as e:
-            print(f"Error on row {idx}: {e}")
-            new_text = ""
-        rewrites.append(new_text)
+            generation = f"ERROR: {e}"
 
-    df["gemma2_blip_rewrite"] = rewrites
-    df.to_csv(args.output_csv, index=False)
-    print(f"Saved Gemma plus BLIP outputs to {args.output_csv}")
+        new_item = dict(item)
+        new_item[f"gemma2_{args.mode}"] = generation
+        results.append(new_item)
+
+    save_jsonl(results, args.output_jsonl)
+    print(f"Saved output to {args.output_jsonl}")
 
 
 if __name__ == "__main__":
