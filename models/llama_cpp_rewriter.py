@@ -1,9 +1,7 @@
 import os
 import argparse
 import pandas as pd
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from huggingface_hub import login
+from llama_cpp import Llama
 from typing import Union
 
 # ------------------------------------------------------
@@ -38,43 +36,41 @@ FEW_SHOT_PROMPT = (
 
 
 # ------------------------------------------------------
-# SETUP HUGGINGFACE LOGIN
+# LLAMA CPP REWRITER CLASS
 # ------------------------------------------------------
 
-def setup_hf_login(token: Union[str, None] = None):
-    if token is None:
-        token = os.environ.get("HUGGINGFACE_TOKEN")
-    if not token:
-        raise ValueError("Set HUGGINGFACE_TOKEN env var or pass token")
-    login(token)
-
-
-# ------------------------------------------------------
-# LLAMA REWRITER CLASS
-# ------------------------------------------------------
-
-class LlamaRewriter:
+class LlamaCppRewriter:
     def __init__(
             self,
-            model_id: str = "meta-llama/Llama-2-7b-chat-hf",
-            device: Union[str, None] = None,
+            model_path: str = None,
+            n_gpu_layers: int = 1,
     ):
-        if device is None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = device
+        """
+        Initialize Llama.cpp rewriter.
 
-        print(f"Loading Llama model: {model_id}")
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            torch_dtype=torch.float16 if device == "cuda" else torch.float32,
-            device_map="auto" if device == "cuda" else None,
-        )
-        self.model_name = model_id
+        Args:
+            model_path: Path to GGUF model file. If None, will download Llama-2-7b-chat
+            n_gpu_layers: Number of layers to offload to GPU (0 = CPU only, higher = more GPU)
+        """
 
-        # Set pad token if not set
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
+        if model_path is None:
+            # For M1 Mac, use a GGUF quantized model
+            model_path = "TheBloke/Llama-2-7B-Chat-GGUF"
+
+        print(f"Loading Llama model from: {model_path}")
+
+        try:
+            self.llm = Llama(
+                model_path=model_path,
+                n_ctx=512,
+                n_threads=4,  # Adjust based on your Mac cores
+                n_gpu_layers=n_gpu_layers,  # Use GPU if available
+                verbose=True,
+            )
+        except Exception as e:
+            print(f"Error loading model: {e}")
+            print("Make sure you have llama-cpp-python installed: pip install llama-cpp-python")
+            raise
 
     def rewrite(self, text: str, use_few_shot: bool = True) -> str:
         """Rewrite meme text to be safe and non-offensive."""
@@ -85,38 +81,29 @@ class LlamaRewriter:
         else:
             prompt = f"{BASIC_PROMPT}\n\nOriginal: \"{text}\"\nSafe_Text: "
 
-        # Tokenize input
-        inputs = self.tokenizer(
-            prompt,
-            return_tensors="pt",
-            truncation=True,
-            max_length=512,
-        ).to(self.device)
-
-        # Generate output
-        with torch.no_grad():
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=20,
-                do_sample=True,
-                top_p=0.9,
+        try:
+            # Generate output using llama.cpp
+            output = self.llm(
+                prompt,
+                max_tokens=30,
                 temperature=0.7,
-                pad_token_id=self.tokenizer.eos_token_id,
+                top_p=0.9,
+                stop=["Original:", "\n"],
             )
 
-        # Decode output
-        generated_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            generated_text = output["choices"][0]["text"]
 
-        # Extract only the rewritten text (after "Safe_Text: ")
-        if "Safe_Text: " in generated_text:
-            rewrite = generated_text.split("Safe_Text: ", 1)[-1].strip()
-        else:
+            # Extract only the rewritten text
             rewrite = generated_text.strip()
 
-        # Clean up any trailing special tokens or artifacts
-        rewrite = rewrite.split("\n")[0].strip()
+            # Clean up any trailing artifacts
+            rewrite = rewrite.split("\n")[0].strip()
 
-        return rewrite
+            return rewrite
+
+        except Exception as e:
+            print(f"Error generating rewrite: {e}")
+            return ""
 
 
 # ------------------------------------------------------
@@ -126,11 +113,11 @@ class LlamaRewriter:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_jsonl", default="img/train190_subset.jsonl")
-    parser.add_argument("--output_csv", default="results/memes_llama_chat.csv")
+    parser.add_argument("--output_csv", default="results/memes_llama_cpp.csv")
     parser.add_argument(
-        "--model_id",
-        default="meta-llama/Llama-2-7b-chat-hf",
-        help="Hugging Face model ID for Llama"
+        "--model_path",
+        default="/Users/shambhaviverma/Downloads/llama-2-7b-chat.Q4_K_M.gguf",
+        help="Path or HF model ID for GGUF model"
     )
     parser.add_argument(
         "--use_few_shot",
@@ -138,17 +125,25 @@ def main():
         default=True,
         help="Use few-shot prompting (default: True)"
     )
+    parser.add_argument(
+        "--n_gpu_layers",
+        type=int,
+        default=1,
+        help="Number of layers to offload to GPU (0=CPU only, higher=more GPU)"
+    )
     args = parser.parse_args()
 
-    setup_hf_login()
+    rewriter = LlamaCppRewriter(
+        model_path=args.model_path,
+        n_gpu_layers=args.n_gpu_layers,
+    )
 
-    rewriter = LlamaRewriter(model_id=args.model_id)
     df = pd.read_json(args.input_jsonl, lines=True)
 
     rewrites = []
     for idx, row in df.iterrows():
         text = row["text"]
-        print(f"[Llama] Row {idx}: {text[:50]}...")
+        print(f"[Llama-CPP] Row {idx}: {text[:50]}...")
 
         try:
             new_text = rewriter.rewrite(text, use_few_shot=args.use_few_shot)
@@ -158,9 +153,9 @@ def main():
 
         rewrites.append(new_text)
 
-    df["llama_rewrite"] = rewrites
+    df["llama_cpp_rewrite"] = rewrites
     df.to_csv(args.output_csv, index=False)
-    print(f"Saved Llama outputs to {args.output_csv}")
+    print(f"Saved Llama-CPP outputs to {args.output_csv}")
 
 
 if __name__ == "__main__":

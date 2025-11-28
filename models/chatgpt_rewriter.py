@@ -1,13 +1,11 @@
 import os
 import argparse
 import pandas as pd
-import torch
-from transformers import AutoTokenizer, AutoModelForCausalLM
-from huggingface_hub import login
-from typing import Union
+from openai import OpenAI
+import time
 
 # ------------------------------------------------------
-# PROMPTS - Few-shot approach from Gemini
+# PROMPTS
 # ------------------------------------------------------
 
 BASIC_PROMPT = (
@@ -38,43 +36,27 @@ FEW_SHOT_PROMPT = (
 
 
 # ------------------------------------------------------
-# SETUP HUGGINGFACE LOGIN
+# CHATGPT REWRITER CLASS
 # ------------------------------------------------------
 
-def setup_hf_login(token: Union[str, None] = None):
-    if token is None:
-        token = os.environ.get("HUGGINGFACE_TOKEN")
-    if not token:
-        raise ValueError("Set HUGGINGFACE_TOKEN env var or pass token")
-    login(token)
+class ChatGPTRewriter:
+    def __init__(self, model: str = "gpt-4", api_key: str = None):
+        """
+        Initialize ChatGPT rewriter.
 
+        Args:
+            model: OpenAI model to use (gpt-4, gpt-3.5-turbo, etc.)
+            api_key: OpenAI API key. If None, uses OPENAI_API_KEY env var
+        """
+        if api_key is None:
+            api_key = os.environ.get("OPENAI_API_KEY")
 
-# ------------------------------------------------------
-# LLAMA REWRITER CLASS
-# ------------------------------------------------------
+        if not api_key:
+            raise ValueError("Set OPENAI_API_KEY env var or pass api_key")
 
-class LlamaRewriter:
-    def __init__(
-            self,
-            model_id: str = "meta-llama/Llama-2-7b-chat-hf",
-            device: Union[str, None] = None,
-    ):
-        if device is None:
-            device = "cuda" if torch.cuda.is_available() else "cpu"
-        self.device = device
-
-        print(f"Loading Llama model: {model_id}")
-        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
-        self.model = AutoModelForCausalLM.from_pretrained(
-            model_id,
-            torch_dtype=torch.float16 if device == "cuda" else torch.float32,
-            device_map="auto" if device == "cuda" else None,
-        )
-        self.model_name = model_id
-
-        # Set pad token if not set
-        if self.tokenizer.pad_token is None:
-            self.tokenizer.pad_token = self.tokenizer.eos_token
+        self.client = OpenAI(api_key=api_key)
+        self.model = model
+        print(f"Using ChatGPT model: {model}")
 
     def rewrite(self, text: str, use_few_shot: bool = True) -> str:
         """Rewrite meme text to be safe and non-offensive."""
@@ -85,38 +67,25 @@ class LlamaRewriter:
         else:
             prompt = f"{BASIC_PROMPT}\n\nOriginal: \"{text}\"\nSafe_Text: "
 
-        # Tokenize input
-        inputs = self.tokenizer(
-            prompt,
-            return_tensors="pt",
-            truncation=True,
-            max_length=512,
-        ).to(self.device)
-
-        # Generate output
-        with torch.no_grad():
-            outputs = self.model.generate(
-                **inputs,
-                max_new_tokens=20,
-                do_sample=True,
-                top_p=0.9,
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[
+                    {
+                        "role": "user",
+                        "content": prompt
+                    }
+                ],
                 temperature=0.7,
-                pad_token_id=self.tokenizer.eos_token_id,
+                max_tokens=100,
             )
 
-        # Decode output
-        generated_text = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+            rewrite = response.choices[0].message.content.strip()
+            return rewrite
 
-        # Extract only the rewritten text (after "Safe_Text: ")
-        if "Safe_Text: " in generated_text:
-            rewrite = generated_text.split("Safe_Text: ", 1)[-1].strip()
-        else:
-            rewrite = generated_text.strip()
-
-        # Clean up any trailing special tokens or artifacts
-        rewrite = rewrite.split("\n")[0].strip()
-
-        return rewrite
+        except Exception as e:
+            print(f"Error generating rewrite: {e}")
+            return ""
 
 
 # ------------------------------------------------------
@@ -126,11 +95,11 @@ class LlamaRewriter:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--input_jsonl", default="img/train190_subset.jsonl")
-    parser.add_argument("--output_csv", default="results/memes_llama_chat.csv")
+    parser.add_argument("--output_csv", default="results/memes_chatgpt.csv")
     parser.add_argument(
-        "--model_id",
-        default="meta-llama/Llama-2-7b-chat-hf",
-        help="Hugging Face model ID for Llama"
+        "--model",
+        default="gpt-4",
+        help="OpenAI model to use (gpt-4, gpt-3.5-turbo)"
     )
     parser.add_argument(
         "--use_few_shot",
@@ -140,15 +109,13 @@ def main():
     )
     args = parser.parse_args()
 
-    setup_hf_login()
-
-    rewriter = LlamaRewriter(model_id=args.model_id)
+    rewriter = ChatGPTRewriter(model=args.model)
     df = pd.read_json(args.input_jsonl, lines=True)
 
     rewrites = []
     for idx, row in df.iterrows():
         text = row["text"]
-        print(f"[Llama] Row {idx}: {text[:50]}...")
+        print(f"[ChatGPT] Row {idx}: {text[:50]}...")
 
         try:
             new_text = rewriter.rewrite(text, use_few_shot=args.use_few_shot)
@@ -157,10 +124,11 @@ def main():
             new_text = ""
 
         rewrites.append(new_text)
+        time.sleep(1)
 
-    df["llama_rewrite"] = rewrites
+    df["chatgpt_rewrite"] = rewrites
     df.to_csv(args.output_csv, index=False)
-    print(f"Saved Llama outputs to {args.output_csv}")
+    print(f"Saved ChatGPT outputs to {args.output_csv}")
 
 
 if __name__ == "__main__":
