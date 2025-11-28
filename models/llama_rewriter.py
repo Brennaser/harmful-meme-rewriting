@@ -97,7 +97,7 @@ class LlamaRewriter:
         with torch.no_grad():
             outputs = self.model.generate(
                 **inputs,
-                max_new_tokens=50,
+                max_new_tokens=30,
                 do_sample=True,
                 top_p=0.9,
                 temperature=0.7,
@@ -125,8 +125,8 @@ class LlamaRewriter:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input_jsonl", default="memes.jsonl")
-    parser.add_argument("--output_csv", default="memes_llama.csv")
+    parser.add_argument("--input_jsonl", default="img/train190_subset.jsonl")
+    parser.add_argument("--output_csv", default="results/memes_llama.csv")
     parser.add_argument(
         "--model_id",
         default="meta-llama/Llama-2-7b-hf",
