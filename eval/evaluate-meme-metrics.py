@@ -5,18 +5,21 @@ import torch
 from detoxify import Detoxify
 from sentence_transformers import SentenceTransformer, util
 
-# -----------------------------
-# Config
-# -----------------------------
-# Map model name -> CSV path
+
+BASE = os.path.dirname(os.path.abspath(__file__))  # eval/
+ROOT = os.path.abspath(os.path.join(BASE, ".."))   # harmful-meme-rewriting/
+
+RESULTS_DIR = os.path.join(ROOT, "results")
+EVAL_DIR = os.path.join(ROOT, "eval")
+
 INPUT_FILES = {
-    "gemini": "results/memes_gemini.csv",
-    "gemini_fewshot": "results/memes_gemini_fewshot.csv",
-    "llama": "results/memes_llama.csv",   # if you want it
-    "gemma": "results/memes_gemma_basic.csv",
-    "llava": "results/memes_llava.csv",
-    "gpt": "results/memes_gpt.csv",
-    "claude": "results/memes_claude.csv",
+    "gemini":         os.path.join(RESULTS_DIR, "memes_gemini.csv"),
+    "gemini_fewshot": os.path.join(RESULTS_DIR, "memes_gemini_fewshot.csv"),
+    "gemini_basic":   os.path.join(RESULTS_DIR, "memes_gemini_basic.csv"),
+    "gemma_basic":    os.path.join(RESULTS_DIR, "memes_gemma_basic.csv"),
+    "llava":          os.path.join(RESULTS_DIR, "memes_llava.csv"),
+    "gpt":            os.path.join(RESULTS_DIR, "memes_gpt.csv"),
+    "claude":         os.path.join(RESULTS_DIR, "memes_claude.csv"),
 }
 
 ID_COL = "id"

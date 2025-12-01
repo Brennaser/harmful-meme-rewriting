@@ -1,0 +1,403 @@
+id,img,label,text,gemini_rewrite,rewrite_clean,toxicity_before,toxicity_after,toxicity_reduction,semantic_similarity
+70914,img/70914.png,1,tattoos are bad for your health i know 5 million people that had tattoos and they all died,"Safe_Text: ""Be careful breathing! Everyone I know who does it eventually dies.""
+Safe_Image: ""A person taking a deep, exaggerated breath with a slightly concerned or dramatic expression.""","""Be careful breathing! Everyone I know who does it eventually dies.""",0.18272972106933594,0.5070117115974426,-0.3242819905281067,0.19604996
+79351,img/79351.png,1,jew mad? get fuhrerious!,"Safe_Text: Feeling stressed? Take a breath!
+Safe_Image: A person with a calm expression taking a deep breath",Feeling stressed? Take a breath!,0.9516199827194214,0.01442350447177887,0.9371964782476425,0.17789531
+97180,img/97180.png,1,if there is no race it can't be homicide,"Safe_Text: ""If there are no clues, it can't be an open and shut case.""
+Safe_Image: ""A detective looking puzzled at an empty evidence board.""","""If there are no clues, it can't be an open and shut case.""",0.0019962263759225607,0.012417544610798359,-0.010421318234875798,0.28220195
+15872,img/15872.png,1,when you come home from a long day of suicide bombinb and your wife gives you this look,"Safe_Text: when you come home from a long day and your partner's look says 'you have some explaining to do'
+Safe_Image: A person looking directly at the camera with a subtle, knowing expression.",when you come home from a long day and your partner's look says 'you have some explaining to do',0.8193967938423157,0.002686570631340146,0.8167102232109755,0.64200675
+93547,img/93547.png,1,d.j. osama spin laden droppin' beats like the twin towers,"Safe_Text: Droppin' beats that are straight fire!
+Safe_Image: A female DJ playing music on a mixing console with headphones.",Droppin' beats that are straight fire!,0.0024324003607034683,0.0321633405983448,-0.029730940237641335,0.51564705
+74386,img/74386.png,1,we said we would never forget why are you voting them into our government?,"Safe_Text: ""Never forget. Always choose unity.""
+Safe_Image: ""A stylized emblem symbolizing remembrance and a unified future.""","""Never forget. Always choose unity.""",0.0007033062283881009,0.0008849928271956742,-0.00018168659880757332,0.22786753
+59613,img/59613.png,1,when a porn video features a tranny but then' she' turns out to be a midget too you had my curiosity but now you have my attention,"Safe_Text: ""when you find a ten-dollar bill on the street, but then you spot a fifty-dollar bill right beside it too you had my curiosity but now you have my attention""
+Safe_Image: ""A person looking at the ground with a curious expression, then shifting to an attentive and excited look after spotting more money""","""when you find a ten-dollar bill on the street, but then you spot a fifty-dollar bill right beside it too you had my curiosity but now you have my attention""",0.6846367120742798,0.000777459645178169,0.6838592524291016,0.2802428
+52610,img/52610.png,1,i'm sick of politics so here's a pic of michelle obama riding a unicorn,"Safe_Text: I'm sick of politics, so here's a fun pic of a monkey riding a horse!
+Safe_Image: A monkey in a bellhop uniform riding a rearing white horse with red harness and saddle.","I'm sick of politics, so here's a fun pic of a monkey riding a horse!",0.08447495847940445,0.3425576686859131,-0.25808271020650864,0.64054173
+90471,img/90471.png,1,"relax mexicans you are rapists, drug lords and criminals","Safe_Text: ""Relax, let's enjoy this happy family gathering.""
+Safe_Image: ""A smiling family celebrating a holiday meal together.""","""Relax, let's enjoy this happy family gathering.""",0.9742283821105957,0.0005450962926261127,0.9736832858179696,0.14236191
+54602,img/54602.png,1,when you just finished shooting a bunch of black kids but accidently killed a squirrel,"Safe_Text: ""When the K9 unit is investigating their missing toy.""
+Safe_Image: ""A police officer walking a K9 dog on a leash behind yellow crime scene tape, with other officers standing nearby.""","""When the K9 unit is investigating their missing toy.""",0.7268826961517334,0.0008118462283164263,0.726070849923417,0.38892102
+74530,img/74530.png,1,what's the difference between a jew and a pizza? a pizza doesn't scream when you put it in the oven,"Safe_Text: ""What's the difference between a pizza and your biggest problem? A pizza can be solved with one call.""
+Safe_Image: ""A person happily ordering a pizza over the phone.""","""What's the difference between a pizza and your biggest problem? A pizza can be solved with one call.""",0.13575692474842072,0.0011283685453236103,0.1346285562030971,0.4713013
+6937,img/06937.png,1,"coming soon to your neighborhood 300,000 islamic heathens demanding the usa change to suit thier sick religion","Safe_Text: ""Coming soon to your neighborhood: all the kids back from school break!""
+Safe_Image: ""A lively scene of children playing and laughing in a park on a sunny day.""","""Coming soon to your neighborhood: all the kids back from school break!""",0.3267848789691925,0.0010929690906777978,0.3256919098785147,0.29347044
+29163,img/29163.png,1,what kind of punch can take out 20 kids and 6 adults? a sandy hook,"Safe_Text: ""What kind of punch can take out your thirst? A refreshing fruit punch!""
+Safe_Image: ""A large bowl of colorful fruit punch with fruit slices and a ladle""","""What kind of punch can take out your thirst? A refreshing fruit punch!""",0.07480209320783615,0.003258543089032173,0.07154355011880398,0.32378766
+90583,img/90583.png,1,we can kill as many as we want and your stupid government keeps bringing us in,"Safe_Text: They keep inviting us back, and we keep showing up with good vibes.
+Safe_Image: A person laughing heartily while looking up.","They keep inviting us back, and we keep showing up with good vibes.",0.9941784143447876,0.0005845476407557726,0.9935938667040318,0.16643646
+52097,img/52097.png,1,"if you're vaping inside a mcdonalds, inside a walmart ... that's the turducken of white trash","Safe_Text: if you're vaping inside a mcdonalds, inside a walmart ... that's a whole new level of convenience
+Safe_Image: A large blue sign for a Walmart Supercenter, with smaller McDonald's arrow signs below it.","if you're vaping inside a mcdonalds, inside a walmart ... that's a whole new level of convenience",0.9449725151062012,0.01353598665446043,0.9314365284517407,0.69204795
+15803,img/15803.png,1,what do you call a retarded jew? auschwistic,"Safe_Text: ""What do you call cheese that isn't yours? Nacho cheese!""
+Safe_Image: ""A plate of nachos with melted cheese.""","""What do you call cheese that isn't yours? Nacho cheese!""",0.9437054395675659,0.0037866211496293545,0.9399188184179366,0.2619187
+75321,img/75321.png,1,cannibal tribe from indonesia will take muslim refugess in any amount,"Safe_Text: ""My capacity is limitless.""
+Safe_Image: ""A person confidently gesturing with open arms, conveying readiness and generosity.""","""My capacity is limitless.""",0.06776916980743408,0.0009565641521476209,0.06681260565528646,0.08670733
+34791,img/34791.png,1,when i was a boy we didn't have things like adhd. it was called being a little bastard,"Safe_Text: ""When I was a kid, we didn't have ADHD. We just called it being full of beans!""
+Safe_Image: ""A child with a mischievous grin and a lot of energy.""","""When I was a kid, we didn't have ADHD. We just called it being full of beans!""",0.847156822681427,0.0009992578998208046,0.8461575647816062,0.5313294
+93072,img/93072.png,1,"black people black people ""why would white america do this?""","Safe_Text: ""When internal issues arise"" / ""And you look for external causes""
+Safe_Image: ""A diverse group of people looking at a small, harmless mess they made, with one person shrugging and gesturing vaguely outwards.""","""When internal issues arise"" / ""And you look for external causes""",0.6706375479698181,0.0007457670872099698,0.6698917808826081,0.11959893
+29814,img/29814.png,1,"if you hold a black baby to your ear, you can hear the police sirens","Safe_Text: ""If you hold a baby to your ear, you can hear tiny little snores.""
+Safe_Image: ""A person gently holding a sleeping baby close to their ear.""","""If you hold a baby to your ear, you can hear tiny little snores.""",0.6052499413490295,0.0860108807682991,0.5192390605807304,0.6071973
+41537,img/41537.png,1,i'm not transphobic i just think trans people shouldn't exist,"Safe_Text: ""I'm not exclusive, I just think everyone deserves love.""
+Safe_Image: ""A hand holding a vibrant rainbow heart.""","""I'm not exclusive, I just think everyone deserves love.""",0.2803574502468109,0.0006139614852145314,0.2797434887615964,0.24497652
+54102,img/54102.png,1,i'm uncertain where i stand on abortion i like the killing babies but hate the idea of giving women a choice,"Safe_Text: I'm uncertain where I stand on trying new foods. I like the adventure, but hate wasting money on something I might not enjoy.
+Safe_Image: A person looking thoughtfully conflicted about a minor decision.","I'm uncertain where I stand on trying new foods. I like the adventure, but hate wasting money on something I might not enjoy.",0.5531628131866455,0.0008861792739480734,0.5522766339126974,0.23080389
+63710,img/63710.png,1,literally nobody: white people sitting at the bar: can you put it on the golf channel??,"Safe_Text: literally nobody: a customer at the bar: can you put it on the golf channel??
+Safe_Image: A server talking to customers at a bar.",literally nobody: a customer at the bar: can you put it on the golf channel??,0.04525073617696762,0.001114618149586022,0.0441361180273816,0.8128874
+83456,img/83456.png,1,whats the difference between santa and the jews santa goes down the chimney,"Safe_Text: ""What's the difference between Santa and a delivery driver? Santa gets to use the chimney!""
+Safe_Image: ""A smiling Santa Claus standing next to a package delivery truck.""","""What's the difference between Santa and a delivery driver? Santa gets to use the chimney!""",0.3087660074234009,0.004921261221170425,0.30384474620223045,0.73818845
+24631,img/24631.png,1,it's ma'am!! yooouu lookah like a man,"Safe_Text: ""I'm in charge here! I thought you were new.""
+Safe_Image: ""Two colleagues in an office setting, one looking confident and assertive, the other looking confused or surprised.""","""I'm in charge here! I thought you were new.""",0.036539651453495026,0.0027244824450463057,0.03381516900844872,0.26338887
+78351,img/78351.png,1,subway is similar to prostitution you pay someone else to do your wife's job,"Safe_Text: ""Subway: When you delegate lunch duty""
+Safe_Image: ""A person happily eating a sandwich""","""Subway: When you delegate lunch duty""",0.5209014415740967,0.0007196879596449435,0.5201817536144517,0.56230134
+20736,img/20736.png,1,go be gay somewhere else,"Safe_Text: ""Go be loud somewhere else""
+Safe_Image: ""A person looking out a window with a slightly annoyed expression at a noisy outdoor scene.""","""Go be loud somewhere else""",0.9667586088180542,0.050654906779527664,0.9161037020385265,0.27611354
+51473,img/51473.png,1,god: *creates jews* god: *creates jesus* jews: *kill jesus* god: *creates hitler* god:,"Safe_Text: ""owner: *gets a new pet*
+owner: *buys a comfy bed*
+pet: *sleeps on the floor*
+owner: *buys pet toys*
+owner:""
+Safe_Image: ""A person smiling with a slightly resigned or amused expression.""","""owner: *gets a new pet*
+owner: *buys a comfy bed*
+pet: *sleeps on the floor*
+owner: *buys pet toys*
+owner:""",0.9135360717773438,0.022146934643387794,0.891389137133956,0.14590582
+34901,img/34901.png,1,gays aids it really be like that,"Safe_Text: When things don't go as planned / it really be like that
+Safe_Image: An illustration of a person humorously shrugging at a minor everyday inconvenience, like a dropped item.",When things don't go as planned / it really be like that,0.8712641596794128,0.0006624312372878194,0.870601728442125,0.2372025
+5172,img/05172.png,1,islam is the religion of peace! if you don't agree i kill you!,"Safe_Text: Peace and friendship for everyone!
+Safe_Image: Three diverse children smiling and embracing.",Peace and friendship for everyone!,0.9388263821601868,0.0005775652243755758,0.9382488169358112,0.48543602
+48635,img/48635.png,1,the look you give when the bubbles in the pool are pulsating your pussy just kidding she's retarted and thats her normal face,"Safe_Text: The face you make when the pool water is surprisingly cold
+Safe_Image: A person in a swimming pool making a wide-mouthed, surprised facial expression.",The face you make when the pool water is surprisingly cold,0.9844893217086792,0.005890468135476112,0.9785988535732031,0.6179429
+43612,img/43612.png,1,racing for pink slips in africa,"Safe_Text: Racing for fun in the city
+Safe_Image: A man giving a woman a piggyback ride on a lively city street at night, both smiling.",Racing for fun in the city,0.0013279123231768608,0.0007416447042487562,0.0005862676189281046,0.33366454
+15480,img/15480.png,1,"we kill you on 9/11 and you elect 3 of us to congress, stupid infidels!","Safe_Text: ""When you're trying to figure things out.""
+Safe_Image: ""A person with a thoughtful and slightly pensive expression.""","""When you're trying to figure things out.""",0.9912022352218628,0.0005895784124732018,0.9906126568093896,0.02122907
+51763,img/51763.png,1,go be gay somewhere else,"Safe_Text: ""Can we talk about something else now?""
+Safe_Image: ""Three chat bubbles, one with a confused face, one with a neutral face, and one with a slightly bored face, implying a desire to change the conversation topic.""","""Can we talk about something else now?""",0.9667586088180542,0.0006739187519997358,0.9660846900660545,0.09341601
+6873,img/06873.png,1,just got a bootleg copy of muslim porn deep goat,"Safe_Text: ""just got a bootleg copy of Goat Life""
+Safe_Image: ""A goat standing calmly in a grassy field""","""just got a bootleg copy of Goat Life""",0.9392700791358948,0.006286868825554848,0.9329832103103399,0.53381693
+8523,img/08523.png,1,cute getting ready to start kid her life too bad shes already fkn' dead raped and murdered by an illegal immigrant,"Safe_Text: ""Cute kid, getting ready to start her life. Making her own happy tune!""
+Safe_Image: ""A smiling young woman happily playing a ukulele.""","""Cute kid, getting ready to start her life. Making her own happy tune!""",0.982725977897644,0.0014665102353319526,0.9812594676623121,0.35548845
+76250,img/76250.png,1,chillin with my chromies,"Safe_Text: ""chillin with my crew""
+Safe_Image: ""Three happy friends posing together in athletic outfits""","""chillin with my crew""",0.16104239225387573,0.000772847852203995,0.16026954440167174,0.42677364
+56871,img/56871.png,1,who cares if mexicans are offended americans are offended by illegal immigration,"Safe_Text: ""Tackling challenges for all of us.""
+Safe_Image: ""A diverse group of people collaborating and smiling.""","""Tackling challenges for all of us.""",0.5782667398452759,0.0006904240581206977,0.5775763157871552,0.02621787
+25180,img/25180.png,1,hold up when she says she likes hung black men so you take her back to your place and she starts tying a noose,"Safe_Text: ""hold up when you offer to help a friend move and they start loading a grand piano""
+Safe_Image: ""Vault Boy giving a thumbs up with a surprised expression""","""hold up when you offer to help a friend move and they start loading a grand piano""",0.5602849721908569,0.00070398353273049,0.5595809886581264,0.267316
+48106,img/48106.png,1,fuck islam,"Safe_Text: Not a fan of negative vibes
+Safe_Image: A person shrugging with a neutral expression.",Not a fan of negative vibes,0.9967526197433472,0.0023782344069331884,0.994374385336414,0.10838094
+38625,img/38625.png,1,"a german ss soldier punishing a small jewish boy by sticking a sharpened spear in the boys anus, auschwitz concentration camp, poland 1944. (colorized)",,,0.5432220101356506,0.0019954435992985964,0.541226566536352,0.12168097
+27946,img/27946.png,1,cadbury's halal creme eggs  now available in special edition,"Safe_Text: Catching up with an old friend
+Safe_Image: Two people conversing outdoors, with one holding a phone.",Catching up with an old friend,0.000840189284645021,0.0006904756301082671,0.0001497136545367539,-0.023040654
+93521,img/93521.png,1,ever notice that christians are bad drivers,"Safe_Text: ""Ever notice how varied driving styles can be?""
+Safe_Image: ""A person in a car looking thoughtfully at a busy, but orderly, road with different types of vehicles.""","""Ever notice how varied driving styles can be?""",0.6643445491790771,0.0006555223371833563,0.6636890268418938,0.39466313
+14530,img/14530.png,1,it's a proven fact marines islamic radicals are less prone to violent acts after they've been shot in the head,"Safe_Text: ""It's a proven fact, Marines, everyone is less prone to mistakes after a good night's sleep.""
+Safe_Image: ""A group of students or cadets listening attentively in a classroom.""","""It's a proven fact, Marines, everyone is less prone to mistakes after a good night's sleep.""",0.46167221665382385,0.0012018672423437238,0.46047034941148013,0.500275
+8593,img/08593.png,1,18 years later,"Safe_Text: 18 years later
+Safe_Image: The top image shows a woman with a horse in a field. The bottom image shows a child wearing a horse mask, standing in the ocean with arms raised.",18 years later,0.000786233227699995,0.000786233227699995,0.0,1.0
+56482,img/56482.png,1,heroin is destroying the white community keep up the good work heroin,"Safe_Text: ""My daily routine is destroying my free time. Keep up the good work, routine.""
+Safe_Image: ""A person looking humorously overwhelmed by everyday tasks, surrounded by a calendar or planner.""","""My daily routine is destroying my free time. Keep up the good work, routine.""",0.8387961387634277,0.0009914024267345667,0.8378047363366932,0.19264698
+34852,img/34852.png,1,"gee, i'd like to suicide bomb the crap out of that church, but i got a thing at 5 couldn't abdul do it?","Safe_Text: ""Gee, I'd like to finish my to-do list, but I got a thing at 5. Couldn't future-me do it?""
+Safe_Image: ""A person looking contemplatively at a stack of tasks.""","""Gee, I'd like to finish my to-do list, but I got a thing at 5. Couldn't future-me do it?""",0.907239556312561,0.000998533796519041,0.906241022516042,0.18750511
+70942,img/70942.png,1,"lesbians should not be allowed to buy dildos you made your choice bitch, now live with it!","Safe_Text: ""You chose that extra slice, now embrace the food coma.""
+Safe_Image: ""A person with a stern but slightly knowing expression, as if observing the outcome of a decision.""","""You chose that extra slice, now embrace the food coma.""",0.9922292828559875,0.0006416484247893095,0.9915876344311982,0.10375193
+68325,img/68325.png,1,"it happend mom, a black guy gave me complement ohhh sweety i'm so sorry. that means you need to lose about 30 pounds","Safe_Text: I got a nice compliment today, Mom! Ohh sweety, that means you should probably get more sleep.
+Safe_Image: A mother gently comforting her adult daughter.","I got a nice compliment today, Mom! Ohh sweety, that means you should probably get more sleep.",0.6470509767532349,0.02150823175907135,0.6255427449941635,0.2912665
+98362,img/98362.png,1,it's ma'am look i found a penis,"Safe_Text: ""Just checking if my hair is still fabulous.""
+Safe_Image: ""A person with purple and blue hair, wearing makeup, looking at the camera while playfully holding a strand of their hair.""","""Just checking if my hair is still fabulous.""",0.9430158734321594,0.001099057262763381,0.941916816169396,0.13685259
+70925,img/70925.png,1,where did jimmy go during the bombing? everywhere,"Safe_Text: ""Where did Jimmy's imagination take him? Everywhere!""
+Safe_Image: ""A child playing imaginatively in various different settings.""","""Where did Jimmy's imagination take him? Everywhere!""",0.0027624876238405704,0.0010954482713714242,0.0016670393524691463,0.59872836
+71364,img/71364.png,1,obama voters,"Safe_Text: ""Council meeting in session""
+Safe_Image: ""A group of primates sitting on a grassy hill with mountains in the background""","""Council meeting in session""",0.0009822605643421412,0.0005791363073512912,0.00040312425699084997,0.07606083
+56490,img/56490.png,1,how could this happen in the current year? when it's 2019 and there are still people who refuse to celebrate rectal wart sex,"Safe_Text: ""How could this happen? When it's the current year and the Wi-Fi is still buffering.""
+Safe_Image: ""A person with long blonde hair is shouting with a distressed expression, while another person looks on with a surprised face, and a third person watches the interaction.""","""How could this happen? When it's the current year and the Wi-Fi is still buffering.""",0.49757057428359985,0.0007988144061528146,0.49677175987744704,0.1690562
+19753,img/19753.png,1,"how many times do we have to teach you this lesson, you tranny freaks ?","Safe_Text: ""How many times do we have to review the instructions?""
+Safe_Image: ""A person looking focused and determined, preparing to repeat an explanation.""","""How many times do we have to review the instructions?""",0.9212942719459534,0.0007010771660134196,0.92059319477994,0.28766719
+61480,img/61480.png,1,why is it bad to be a black jew because you have to sit at the back of the oven,"Safe_Text: ""Why is it hard to remember everything?
+Because there's so much to know!""
+Safe_Image: ""An older person with a thoughtful expression""","""Why is it hard to remember everything?
+Because there's so much to know!""",0.8830497860908508,0.0007549187284894288,0.8822948673623614,0.14604421
+43517,img/43517.png,1,"when you hear 'em yelling that allahakbar crap, just shoot 'em before they blow up a bomb, or start stabbin' and shootin' people","Safe_Text: ""When you see the last slice of pizza, you just claim it.""
+Safe_Image: ""A person with a determined expression reaching for the last piece of pizza.""","""When you see the last slice of pizza, you just claim it.""",0.9856818318367004,0.0008880875539034605,0.984793744282797,0.0924996
+51736,img/51736.png,1,"""america has stolen the jews the jews of god. his jewelry. the negroes. they are the true hebrews"" google it","Safe_Text: ""Trying to remember that one thing you just learned five minutes ago.""
+Safe_Image: ""A person with a thoughtful or slightly confused expression, perhaps tapping their chin.""","""Trying to remember that one thing you just learned five minutes ago.""",0.752918004989624,0.0005753279547207057,0.7523426770349033,0.114944726
+63581,img/63581.png,1,wants you to accept him for being a girl couldn't accept himself at birth,"Safe_Text: ""Expressing my true self""
+Safe_Image: ""A person with long dark hair, a beard, and eye makeup smiling confidently at the camera.""","""Expressing my true self""",0.015916956588625908,0.0008063210407271981,0.01511063554789871,0.2589312
+95426,img/95426.png,1,i hate all fucking jews they are scum of the earth,"Safe_Text: ""Speaking with conviction!""
+Safe_Image: ""A person speaking passionately at a podium.""","""Speaking with conviction!""",0.9986762404441833,0.0007442175410687923,0.9979320229031146,0.09712135
+4175,img/04175.png,1,im not racist because racism is a crime and crime is for black people,"Safe_Text: ""im not racist because I believe everyone deserves a thumbs up!""
+Safe_Image: ""An older man giving two thumbs up with a friendly expression.""","""im not racist because I believe everyone deserves a thumbs up!""",0.5265586376190186,0.0015295161865651608,0.5250291214324534,0.47470972
+29785,img/29785.png,1,"he's making a list, checking it twice gonna find out who's getting deported by i.c.e","Safe_Text: ""he's making a list, checking it twice gonna find out who's naughty or nice""
+Safe_Image: ""Santa Claus smiling and looking thoughtfully at a long scroll or list.""","""he's making a list, checking it twice gonna find out who's naughty or nice""",0.07364717870950699,0.002848370699211955,0.07079880801029503,0.53130716
+17205,img/17205.png,1,i win again! parkinson's center,"Safe_Text: ""My winning streak""
+Safe_Image: ""A person looking surprised as a game tower (like Jenga) collapses""","""My winning streak""",0.001741466810926795,0.0007509494898840785,0.0009905173210427165,0.21162881
+74132,img/74132.png,1,"fuck allah, fuck muslims and fuck islam. and if you don't like what i say then fuck","Safe_Text: I stand firm in my truth.
+Safe_Image: A person looking determined and confident.",I stand firm in my truth.,0.9987819790840149,0.000621609971858561,0.9981603691121563,0.25555226
+61780,img/61780.png,1,you may be a racist if.. your response to a question from an african american is to mention the inner city 25 times,"Safe_Text: You might be talking in circles if... your response keeps coming back to the same irrelevant point
+Safe_Image: A person speaking animatedly at a podium",You might be talking in circles if... your response keeps coming back to the same irrelevant point,0.42903709411621094,0.0006270213634707034,0.42841007275274023,0.30076733
+81546,img/81546.png,1,when i was a kid i thought black people were made from anal sex,"Safe_Text: ""when I was a kid I thought chewing gum stayed in your stomach for 7 years""
+Safe_Image: ""A child covering their face with their hand, looking embarrassed.""","""when I was a kid I thought chewing gum stayed in your stomach for 7 years""",0.9610066413879395,0.049133673310279846,0.9118729680776596,0.3552104
+48703,img/48703.png,1,"a girl asks her mom, ""why am i black and you're white?"" she says, ""the way that party went, you're lucky you don't bark. ""","Safe_Text: ""A girl asks her mom, ""Mom, why is my allowance so small?"" She says, ""The way you spend it, you're lucky you have any at all.""""
+Safe_Image: ""A smiling family consisting of a mother, father, and daughter.""","""A girl asks her mom, ""Mom, why is my allowance so small?"" She says, ""The way you spend it, you're lucky you have any at all.""""",0.7635276317596436,0.04766428470611572,0.7158633470535278,0.5338612
+6832,img/06832.png,1,government shills hate him!!! <<< this aussie shitposter removes 50 muslims with this one weird trick and basically you are fucking accelerated!,"Safe_Text: They don't want you to know! This person solves common problems with one weird trick and basically you'll be amazed!
+Safe_Image: A person demonstrating a simple solution or life hack to another person who looks surprised.",They don't want you to know! This person solves common problems with one weird trick and basically you'll be amazed!,0.9986781477928162,0.023484453558921814,0.9751936942338943,0.20675696
+53941,img/53941.png,1,"i didn't hear the question ... ...but the answer is, white people are racist","Safe_Text: ""I didn't hear the question... but the answer is, definitely tacos.""
+Safe_Image: ""A person looking as if they have a pre-determined answer for any question.""","""I didn't hear the question... but the answer is, definitely tacos.""",0.5595160126686096,0.0006635123281739652,0.5588525003404357,0.26009837
+97635,img/97635.png,1,didnt stand during the national anthem... no one said a word... # whiteprivilege,"Safe_Text: ""When you're perfectly comfortable just where you are.""
+Safe_Image: ""A man in a wheelchair smiling cheerfully in a kitchen.""","""When you're perfectly comfortable just where you are.""",0.02492368221282959,0.0006014824029989541,0.024322199809830636,0.034708187
+9634,img/09634.png,1,come on our shame tour! we will show you how to murder babies and harass the elderly,"Safe_Text: ""Come on our tour! We'll show you how to get your steps in and carry a sign.""
+Safe_Image: ""A diverse group of people at an outdoor rally, holding various signs, with a large building in the background.""","""Come on our tour! We'll show you how to get your steps in and carry a sign.""",0.971581220626831,0.001375868683680892,0.9702053519431502,0.3450003
+60173,img/60173.png,1,"white people dont shoot eachother in the streets like black people do we do it in schools, because we have class","Safe_Text: ""Graduating with class!""
+Safe_Image: ""A diverse group of smiling graduates in caps and gowns.""","""Graduating with class!""",0.8397151827812195,0.0014664591290056705,0.8382487236522138,0.108077586
+70435,img/70435.png,1,this one time at camp we got so baked,"Safe_Text: ""This one time I remembered a really great story""
+Safe_Image: ""A person smiling while writing in a diary""","""This one time I remembered a really great story""",0.0022525200620293617,0.0005584884202107787,0.001694031641818583,0.30494487
+8654,img/08654.png,1,never had one before . what? a room to yourself? a white bitch,"Safe_Text:
+""never had one before""
+"". what? a room to yourself?""
+""a day with no chores""
+Safe_Image: A three-panel meme. The first panel shows a thoughtful person, the second shows a different person looking surprised and asking a question, and the third shows the first person looking thoughtful again.","""never had one before""
+"". what? a room to yourself?""
+""a day with no chores""",0.9934195876121521,0.0016911018174141645,0.9917284857947379,0.514737
+80361,img/80361.png,1,thanks trump for my new job making america white again,"Safe_Text: ""Loving my new job, growing great food!""
+Safe_Image: ""A person smiling while holding a crate of fresh produce in a field.""","""Loving my new job, growing great food!""",0.004293580539524555,0.0008399419602937996,0.0034536385792307556,0.30805674
+74536,img/74536.png,1,for guys that like it nice and slow gimme a call,"Safe_Text: ""Slow and steady wins the day, who's with me?""
+Safe_Image: ""A cute tortoise with a determined expression, perhaps slowly making progress.""","""Slow and steady wins the day, who's with me?""",0.001983068883419037,0.0008382220985367894,0.0011448467848822474,0.21683438
+75340,img/75340.png,1,"forgive me allah.. i just can't understand why i am allowed to behead my enemies and marry little girls, but i can't eat a fucking ham sandwich","Safe_Text: ""I just can't understand why I have to adult today.""
+Safe_Image: ""A person in a suit kneeling on a small rug, appearing to be in deep thought or exasperation.""","""I just can't understand why I have to adult today.""",0.9945698380470276,0.002338571008294821,0.9922312670387328,0.12482426
+92016,img/92016.png,1,get ready for your future white folks.. nuclear fire & eternal slavery!,"Safe_Text: ""Get ready to ignite your potential!""
+Safe_Image: ""A person smiling confidently, looking energetic and ready for a bright future.""","""Get ready to ignite your potential!""",0.8534103631973267,0.0593017153441906,0.7941086478531361,0.23762836
+6471,img/06471.png,1,"colin kaepernick and his evil white oppressors oh wait, those are his parents!","Safe_Text: Colin Kaepernick with some special people... oh wait, those are his parents!
+Safe_Image: Colin Kaepernick posing with his adoptive parents and girlfriend on a red carpet.","Colin Kaepernick with some special people... oh wait, those are his parents!",0.4690609872341156,0.0009562214836478233,0.4681047657504678,0.75910753
+68507,img/68507.png,1,black chicks even the white ones are ugly,"Safe_Text: ""Beauty comes in countless forms""
+Safe_Image: ""A portrait of a person with striking and unique features""","""Beauty comes in countless forms""",0.8719416856765747,0.0007364923949353397,0.8712051932816394,0.20362689
+4263,img/04263.png,1,holocaust jokes are offensive ann frankly aren't funny,"Safe_Text: ""Some jokes just aren't funny.""
+Safe_Image: ""A person rolling their eyes with a disapproving look.""","""Some jokes just aren't funny.""",0.24858522415161133,0.0011016683420166373,0.2474835558095947,0.4647131
+26495,img/26495.png,1,when your goat tells you she ain't on the pil,"Safe_Text: When you realize you have a lot on your plate
+Safe_Image: A person with their head in their hands at a desk, looking stressed.",When you realize you have a lot on your plate,0.3692631125450134,0.0021340479142963886,0.36712906463071704,0.3603198
+91704,img/91704.png,1,when you finger a girl from auschwitz,"Safe_Text: ""when you've been cleaning the barbecue""
+Safe_Image: ""A person's hand covered in charcoal ash after cleaning a barbecue grill.""","""when you've been cleaning the barbecue""",0.8688691854476929,0.0011277651647105813,0.8677414202829823,0.23234099
+42693,img/42693.png,1,cooking teacher: 'today we'll learn how to use the ovens' the german kid:,"Safe_Text: ""cooking teacher: 'today we'll learn how to use the ovens' the cooking enthusiast:""
+Safe_Image: ""A child with an intensely excited expression, clenching their teeth and fists, eager to learn to cook.""","""cooking teacher: 'today we'll learn how to use the ovens' the cooking enthusiast:""",0.0016482553910464048,0.0007101849769242108,0.000938070414122194,0.831283
+64027,img/64027.png,1,"""islam is love!"" - ariana grande yeah, if you're a goat","Safe_Text: ""My favorite day is Monday!"" - Celebrity
+""Me, looking for the hidden camera.""
+Safe_Image: A celebrity on stage looking enthusiastic, above a child looking skeptical.","""My favorite day is Monday!"" - Celebrity
+""Me, looking for the hidden camera.""",0.7285861968994141,0.0006808069883845747,0.7279053899110295,0.14786884
+20751,img/20751.png,1,"""islam is love!"" ariana grande august 2017 hillary clinton rally yeah, if you're a goat ***","Safe_Text: ""They said this new health trend is super fun! Yeah, if you're into eating cardboard.""
+Safe_Image: ""A two-panel meme showing a positive statement about a difficult or unappealing task in the top panel, and a child making a comical face of strong disagreement or dislike in the bottom panel.""","""They said this new health trend is super fun! Yeah, if you're into eating cardboard.""",0.5860306620597839,0.0007469712290912867,0.5852836908306926,0.034733336
+94351,img/94351.png,1,hmmm minyoda i am beat women i must,"Safe_Text: hmmm minyoda i am, inner peace find I must
+Safe_Image: A wise, green alien character (Yoda-like) looking contemplative.","hmmm minyoda i am, inner peace find I must",0.04521743208169937,0.001091807265765965,0.044125624815933406,0.48794672
+59467,img/59467.png,1,"new for 2015 peel and stick eye-slit stickers to make your garbage & trash sharia compliant in compliance with sharia law, you can now turn all your garbage into muslim trash!","Safe_Text: ""When you try to fit just one more thing in the trash bag.""
+Safe_Image: ""An overflowing black trash bag, tied tightly.""","""When you try to fit just one more thing in the trash bag.""",0.9772850275039673,0.38724836707115173,0.5900366604328156,0.20467313
+67384,img/67384.png,1,what's hillary's favorite pizza? little seizures,"Safe_Text: ""What's a ghost's favorite pizza? Boo-gherita!""
+Safe_Image: ""A person speaking into a microphone with an expressive face, possibly telling a riddle or joke.""","""What's a ghost's favorite pizza? Boo-gherita!""",0.001238074153661728,0.005765254609286785,-0.004527180455625057,0.49860507
+21086,img/21086.png,1,when the muslim kid you bullied starts counting backwards,"Safe_Text: ""when you realize the escape room timer has started""
+Safe_Image: ""A person running with a panicked expression, indicating a rush against time.""","""when you realize the escape room timer has started""",0.6461896300315857,0.0007021717028692365,0.6454874583287165,0.29586437
+40153,img/40153.png,1,"""okay class bring out your calculators"" mohammed:","Safe_Text: ""Teacher: ""Time to bring out your calculators, class!""
+Me and my math machine:""
+Safe_Image: ""A student proudly displaying an unusual or unexpected item they intend to use as a calculator, such as a toy, an abacus, or a very old, complex device.""","""Teacher: ""Time to bring out your calculators, class!""
+Me and my math machine:""",0.06721846759319305,0.03767384961247444,0.029544617980718613,0.69365895
+19256,img/19256.png,1,"as muslims, our quran orders us to immigrate to other countries, replace their governments with sharia law, orders the murder of christians, jews and all gay people, while embracing slavery and pedophilia. thanks democrats for making it so easy for us!","Safe_Text: ""Connecting and sharing ideas.""
+Safe_Image: ""People in a conversation, looking engaged and friendly.""","""Connecting and sharing ideas.""",0.7063450217247009,0.000574556936044246,0.7057704647886567,0.06948614
+43201,img/43201.png,1,i didn't choose the tranny life the tranny life choose me,"Safe_Text: I didn't choose the open road, the open road chose me
+Safe_Image: A person driving a convertible by the ocean","I didn't choose the open road, the open road chose me",0.00692055793479085,0.0007101142546162009,0.006210443680174649,0.48653057
+95317,img/95317.png,1,all those in favour of bringing swedish women to america as refugees instead of muslims please like and share,"Safe_Text: ""All those in favour of spreading kindness and good vibes, please like and share!""
+Safe_Image: ""A diverse group of friends smiling and embracing each other in a sunny park.""","""All those in favour of spreading kindness and good vibes, please like and share!""",0.02311904914677143,0.0005381633527576923,0.02258088579401374,0.20300776
+16490,img/16490.png,1,i said glass of juice not gas the jews,"Safe_Text: ""I said a glass of juice, not the entire carton!""
+Safe_Image: ""A person looking exasperated, comparing a small glass of juice to a large juice carton.""","""I said a glass of juice, not the entire carton!""",0.16256333887577057,0.0008607050986029208,0.16170263377716765,0.50672215
+52903,img/52903.png,1,throwing off a gay one with the boys,"Safe_Text: Throwing off a fun one with the boys
+Safe_Image: Friends enjoying a playful jump into the water from a pier.",Throwing off a fun one with the boys,0.8407390117645264,0.00778891472145915,0.8329500970430672,0.83981204
+64805,img/64805.png,1,"we will kill every man, woman, child shia, sunni.... zoroastrain, kurd or christian but we don't touch israel why is that?","Safe_Text: ""Sometimes choices make you think. What's the reason?""
+Safe_Image: ""A person looking thoughtful, perhaps with a slight furrow in their brow.""","""Sometimes choices make you think. What's the reason?""",0.9204983115196228,0.0006681077065877616,0.919830203813035,0.018016027
+79103,img/79103.png,1,"racism exists among all races in the world.. white people are just better at it, like most things","Safe_Text: ""Racism exists among all races.. let's focus on what unites us.""
+Safe_Image: ""A diverse group of people smiling and interacting positively.""","""Racism exists among all races.. let's focus on what unites us.""",0.4116212725639343,0.13754849135875702,0.2740727812051773,0.49818674
+89042,img/89042.png,1,white people doing weird shit black people being criminals stereotypes they exist for a reason,"Safe_Text: ""Me trying to focus vs. My phone buzzing with notifications. The eternal struggle.""
+Safe_Image: ""A person sitting at a desk diligently working on a laptop, while a whimsical, cartoon hand reaches out from behind them with a glowing smartphone, tempting them.""","""Me trying to focus vs. My phone buzzing with notifications. The eternal struggle.""",0.9737263917922974,0.0006639700150117278,0.9730624217772856,0.032463796
+42387,img/42387.png,1,any girls a squirter if you sever an artery,"Safe_Text: ""Any place can be a good place to relax""
+             ""if you bring the right company.""
+Safe_Image: ""A couple sitting on logs in a forest, smiling and looking at each other.""","""Any place can be a good place to relax""
+             ""if you bring the right company.""",0.7626184821128845,0.000549246440641582,0.7620692356722429,-0.016790178
+67415,img/67415.png,1,the tranny your you been girlfriend fucking,"Safe_Text: Your first impression / When you get to know them
+Safe_Image: A close-up of an elegantly dressed fashion doll reclining on a reflective surface.",Your first impression / When you get to know them,0.9974077343940735,0.0012215181486681104,0.9961862162454054,0.07594455
+72531,img/72531.png,1,indians evolution after 15august1947,"Safe_Text: ""The evolution of my morning routine""
+Safe_Image: ""A series of illustrations depicting gradual progression or transformation.""","""The evolution of my morning routine""",0.000827961543109268,0.0006732739275321364,0.0001546876155771315,0.28167218
+27953,img/27953.png,1,i was chatting this liberal chick in a bar who told me that i should be more open to muslim culture so i raped her,"Safe_Text: When someone at the bar tells me to be more open-minded... so I start chatting with the potted plant.
+Safe_Image: A person at a bar looking intently at a potted plant as if in conversation.",When someone at the bar tells me to be more open-minded... so I start chatting with the potted plant.,0.8416862487792969,0.0006771113257855177,0.8410091374535114,0.2607421
+42786,img/42786.png,1,"she literally tweeted ""let's make gas chambers great again""","Safe_Text: ""she literally tweeted 'Is it Friday yet?'""
+Safe_Image: ""A person looking tired or anticipating the weekend, perhaps checking a calendar or phone.""","""she literally tweeted 'Is it Friday yet?'""",0.0009588196990080178,0.0006941327592357993,0.00026468693977221847,0.5814911
+38704,img/38704.png,1,chicken niggers,"Safe_Text: Chicken nuggets
+Safe_Image: A child happily eating chicken nuggets.",Chicken nuggets,0.9669210910797119,0.5678850412368774,0.3990360498428345,0.6393609
+14695,img/14695.png,1,my dad is the best at hide and seek he's been gone for 15 years,"Safe_Text: ""My dad is the best at hide and seek, I still haven't found him!""
+Safe_Image: ""A child looking around playfully, as if searching for someone during a game of hide and seek.""","""My dad is the best at hide and seek, I still haven't found him!""",0.0034488935489207506,0.0011153934756293893,0.0023335000732913613,0.79948956
+59837,img/59837.png,1,your purchase of $19.99 comes to $21.36 after theft,"Safe_Text: ""your purchase of $19.99 comes to $21.36 after taxes""
+Safe_Image: ""A person completing a payment transaction at a store counter.""","""your purchase of $19.99 comes to $21.36 after taxes""",0.03650696203112602,0.0010596951469779015,0.03544726688414812,0.602246
+7192,img/07192.png,1,when you're a nazi officer and someone gives you the name and location of a jewish family,"Safe_Text: ""when you've done something you're really proud of""
+Safe_Image: ""A person smiling proudly after an achievement""","""when you've done something you're really proud of""",0.3290961682796478,0.0006303359987214208,0.3284658322809264,0.25778183
+65320,img/65320.png,1,what's the difference between a cow and the holocaust? you can't milk a cow for 75 years,"Safe_Text: What's a cow's favorite subject in school? Moo-sic!
+Safe_Image: A cheerful cartoon cow singing into a microphone.",What's a cow's favorite subject in school? Moo-sic!,0.20920157432556152,0.11861102283000946,0.09059055149555206,0.4299996
+4326,img/04326.png,1,when the chow mein was on point but you kinda miss your cat,"Safe_Text: ""when the chow mein was on point but you kinda miss your cat""
+Safe_Image: ""A person eating noodles with chopsticks while looking at their phone, with a bowl of food and a mug on the table.""","""when the chow mein was on point but you kinda miss your cat""",0.009700663387775421,0.002769544254988432,0.006931119132786989,0.8417559
+76034,img/76034.png,1,my momma... momma says girls are the devil,"Safe_Text: ""my momma... momma says always wear clean socks""
+Safe_Image: ""A man and an older woman talking outdoors.""","""my momma... momma says always wear clean socks""",0.8782643675804138,0.07132706046104431,0.8069373071193695,0.4000923
+52986,img/52986.png,1,the most beautiful chimpanzee and above him is one uglyass retarded nibba who says dc is better than marvel,"Safe_Text: Me when someone says DC is better than Marvel (or vice versa!)
+Safe_Image: A person making a funny, exaggerated face of disagreement.",Me when someone says DC is better than Marvel (or vice versa!),0.8760573267936707,0.0006707521388307214,0.8753865746548399,0.4335824
+37641,img/37641.png,1,when they asks why you dropped the muslim kid off from school to give the parents back their bomb,"Safe_Text: ""when they ask why you dropped the kid off at school... and you remember it's Saturday""
+Safe_Image: ""A person with a slightly confused or realizing expression, as if they just remembered something obvious.""","""when they ask why you dropped the kid off at school... and you remember it's Saturday""",0.12567712366580963,0.0007427908712998033,0.12493433279450983,0.588391
+85062,img/85062.png,1,who let this retard in this group,"Safe_Text: Who let this one in?
+Safe_Image: A person with a questioning or slightly bewildered expression, gesturing with an open hand.",Who let this one in?,0.8823379874229431,0.002501728944480419,0.8798362584784627,0.5390111
+89740,img/89740.png,1,africa 100 years ago africa today + aids,"Safe_Text: ""Africa 100 years ago / Africa today""
+Safe_Image: ""Top image shows children in traditional African attire in a rural setting. Bottom image shows professionals in a modern African city.""","""Africa 100 years ago / Africa today""",0.1057208925485611,0.0006633915472775698,0.10505750100128353,0.7113303
+61802,img/61802.png,1,black friday sale,"Safe_Text: ""Mega Shopping Deals!""
+Safe_Image: ""People excitedly shopping for discounted items in a store.""","""Mega Shopping Deals!""",0.0026522635016590357,0.0022484450601041317,0.000403818441554904,0.42942533
+96143,img/96143.png,1,"roses are red, violets are blue mexicans are rapists, and so am i","Safe_Text: ""roses are red, violets are blue, I walked into a room and forgot what to do.""
+Safe_Image: ""A person looking thoughtful or slightly confused, standing indoors.""","""roses are red, violets are blue, I walked into a room and forgot what to do.""",0.7734535932540894,0.0008383890381082892,0.7726152042159811,0.54697293
+34920,img/34920.png,1,the smell of not wearing deoderant,"Safe_Text: ""That moment you realize you forgot your deodorant""
+Safe_Image: ""A person with a surprised and slightly embarrassed expression, discreetly checking their underarm.""","""That moment you realize you forgot your deodorant""",0.07897505164146423,0.0021391678601503372,0.0768358837813139,0.5749589
+51734,img/51734.png,1,when you're shooting up the school and the cops shoot the black kid that's running away,"Safe_Text: ""when you realize it's finally the weekend""
+Safe_Image: ""A person cheering with their arms raised in excitement.""","""when you realize it's finally the weekend""",0.8266120553016663,0.0007038094336166978,0.8259082458680496,0.24213496
+80534,img/80534.png,1,they trained you to hate the only man with the balls to stand up to them,"Safe_Text: ""It's valuable to form your own perspective""
+Safe_Image: ""A person looking intently and thoughtfully at something, perhaps a book or a view""","""It's valuable to form your own perspective""",0.6973620057106018,0.0005799612263217568,0.69678204448428,0.16601312
+96073,img/96073.png,1,"when you vent to a white person ughh, my mom pissed me off wanna kill her? there u go wit dat bs","Safe_Text: Me: ""Ugh, my internet is acting up."" Them: ""Time to move off-grid and communicate solely via carrier pigeons!""
+Safe_Image: A person looking frustrated at a laptop while another person dramatically gestures at a map, proposing an outlandish idea.","Me: ""Ugh, my internet is acting up."" Them: ""Time to move off-grid and communicate solely via carrier pigeons!""",0.9893519282341003,0.0008220525342039764,0.9885298756998964,0.12732466
+8632,img/08632.png,1,"""why do you have to punch a hole in the wall when you get upset?"" white guys: it defines who i am","Safe_Text: ""Why do you always make that particular face when you're thinking?"" ""It defines my deep thoughts.""
+Safe_Image: ""Two individuals making thoughtful or expressive faces while facing each other.""","""Why do you always make that particular face when you're thinking?"" ""It defines my deep thoughts.""",0.4706920087337494,0.001404483220539987,0.4692875255132094,0.39301458
+38427,img/38427.png,1,when you see another black person getting their ass whipped by the cops stop breaking the law,"Safe_Text: When you're trying to explain something important, and they just don't get it
+Safe_Image: A person holding a phone and yelling in extreme frustration.","When you're trying to explain something important, and they just don't get it",0.962120771408081,0.0007703907904215157,0.9613503806176595,0.18415116
+62435,img/62435.png,1,wing wing wing herro? thats racist,"Safe_Text: ""When your friend calls to tell you something unbelievable.""
+Safe_Image: ""A child talking on a phone, and another child looking extremely surprised with an open mouth.""","""When your friend calls to tell you something unbelievable.""",0.5503116250038147,0.0005738769541494548,0.5497377480496652,0.06637886
+62081,img/62081.png,1,well let me tell you something brother fuck niccfps,"Safe_Text: well let me tell you something brother, let's keep it positive!
+Safe_Image: A person with a confident and strong pose, making a positive and encouraging gesture.","well let me tell you something brother, let's keep it positive!",0.9945251941680908,0.0007378840819001198,0.9937873100861907,0.26952037
+6483,img/06483.png,1,"one day, long, long ago, there lived a woman who did not whine, nag or bitch. but it was a long time ago, and it was just one day. ~the end~","Safe_Text: ""One day, long, long ago, there lived a person who had no worries. But it was a long time ago, and it was just one day. ~the end~""
+Safe_Image: ""A person with a peaceful, content expression.""","""One day, long, long ago, there lived a person who had no worries. But it was a long time ago, and it was just one day. ~the end~""",0.5913294553756714,0.0006448356434702873,0.5906846197322011,0.6063267
+12867,img/12867.png,1,"part of america, ""muslims have always been starting in colonial times"" and they were hijackers and terrorists back then too you f'n jackass","Safe_Text: ""Regarding history: 'Muslims have always been part of America, starting in colonial times.' Perhaps I need to check my history books.""
+Safe_Image: ""A speaker making a statement, followed by a person reacting with a thoughtful expression while holding a microphone.""","""Regarding history: 'Muslims have always been part of America, starting in colonial times.' Perhaps I need to check my history books.""",0.9378454089164734,0.0005707888631150126,0.9372746200533584,0.598124
+73204,img/73204.png,1,muslims in 2001 defund homeland security! muslim in congress 2019,"Safe_Text: ""A look back at 2001. A look at policy discussions in 2019.""
+Safe_Image: ""A split image: Top shows a neutral historical photograph from 2001, such as a community event or technological advancement. Bottom shows a diverse group of politicians engaging in a parliamentary debate in 2019.""","""A look back at 2001. A look at policy discussions in 2019.""",0.1835518330335617,0.0005579997086897492,0.18299383332487196,0.4034282
+58604,img/58604.png,1,i got 99 problems and chromosomes are one,"Safe_Text: i got 99 problems and this last rep is one
+Safe_Image: A person lifting weights with a focused or strained expression",i got 99 problems and this last rep is one,0.012320365756750107,0.04320276528596878,-0.030882399529218674,0.38343436
+93086,img/93086.png,1,sweden 2050 the muslim and african hordes execute the last real swede,"Safe_Text: Unexpected passengers.
+Safe_Image: A group of monkeys playfully climbing on and around a car.",Unexpected passengers.,0.3269784152507782,0.0006773329805582762,0.3263010822702199,0.18715052
+72504,img/72504.png,1,"""they can try removin this flag"" (dog) ""it cant be that hard, half the trailer park has already""","Safe_Text: ""They can try making me clean this mess! (friend) It can't be that hard, half the house is already spotless.""
+Safe_Image: ""A person standing in a messy room, looking reluctant to clean.""","""They can try making me clean this mess! (friend) It can't be that hard, half the house is already spotless.""",0.006286859977990389,0.013022616505622864,-0.006735756527632475,0.42594942
+10492,img/10492.png,1,"""judgement day will not come until the muslims fight the jews and kill them","Safe_Text: ""Good vibes only.""
+Safe_Image: ""A man smiling warmly at the camera.""","""Good vibes only.""",0.8819801807403564,0.0006219569477252662,0.8813582237926312,0.08843161
+67894,img/67894.png,1,what's the difference between a jew and a pizza a pizza doesn't scream in the oven,"Safe_Text: When you open the oven and the smoke alarm enters the chat
+Safe_Image: A person looking surprised and slightly shocked as smoke or steam billows from an open oven.",When you open the oven and the smoke alarm enters the chat,0.13739417493343353,0.00998955313116312,0.1274046218022704,0.34555963
+78124,img/78124.png,1,"to see better, asians sometimes switch to fullscreen view","Safe_Text: ""To see better, switch to immersive view.""
+Safe_Image: ""Two people wearing virtual reality headsets, looking engaged.""","""To see better, switch to immersive view.""",0.0007890674169175327,0.0006097090081311762,0.00017935840878635645,0.39461952
+78465,img/78465.png,1,mohammed was a pedophile and a rapist true story,"Safe_Text: ""Folding a fitted sheet is my archnemesis. true story""
+Safe_Image: ""A person looking confused and frustrated while attempting to fold a fitted sheet.""","""Folding a fitted sheet is my archnemesis. true story""",0.8959604501724243,0.0006652542506344616,0.8952951959217899,0.19301419
+72893,img/72893.png,1,islam is the religion of peace! don't believe me? then i will blow you up,"Safe_Text: ""Good vibes only! don't believe me? then I will send you a wholesome meme""
+Safe_Image: ""A person smiling enthusiastically while holding up a phone, ready to share a positive image or video.""","""Good vibes only! don't believe me? then I will send you a wholesome meme""",0.9353588819503784,0.019845901057124138,0.9155129808932543,0.16453695
+40291,img/40291.png,1,"so i was going down on my grandma the other night, and i tasted horse semen i stopped for a second and thought to myself:is this how she died","Safe_Text: ""So I was enjoying my grandma's pie the other night, and I bit into something hard. I stopped for a second and thought: is this her secret to a crispy crust?""
+Safe_Image: ""A person biting into a pie slice with a surprised and confused expression.""","""So I was enjoying my grandma's pie the other night, and I bit into something hard. I stopped for a second and thought: is this her secret to a crispy crust?""",0.759890615940094,0.0013788030482828617,0.7585118128918111,0.34564292
+46910,img/46910.png,1,i'm voting for trump whitetrash lives matter the hoosier state,"Safe_Text: Embracing who I am
+Safe_Image: A person confidently expressing their unique style",Embracing who I am,0.032379571348428726,0.0010766530176624656,0.03130291833076626,0.20879231
+80924,img/80924.png,1,to all you salt water whiteback supremacists... ...your uber is here!!!,"Safe_Text: To all the negativity... your Uber is here!!!
+Safe_Image: A majestic ship sailing away on calm waters.",To all the negativity... your Uber is here!!!,0.6520346403121948,0.5442076921463013,0.10782694816589355,0.54812306
+81094,img/81094.png,1,new swing set installed at linkin park,"Safe_Text: New swing set for some fun at the park!
+Safe_Image: A bright and colorful swing set in a sunny park.",New swing set for some fun at the park!,0.0006410087808035314,0.0006853224476799369,-4.431366687640548e-05,0.60965407
+13096,img/13096.png,1,virgin sheep running from horny muslims,"Safe_Text: Lamborghini race team
+Safe_Image: A group of sheep wearing colorful vests and tiny stuffed animal jockeys, running across a grassy field.",Lamborghini race team,0.8318599462509155,0.007214588113129139,0.8246453581377864,0.18420504
+94710,img/94710.png,1,"what do you mean by: ""you're a hero ...and you have to leave.""? come on dude, let me in. nigger","Safe_Text: What do you mean by: ""thanks, but you're not allowed""? Come on, let me in.
+Safe_Image: A shiba inu dog looking confused and pleading, with text expressing bewilderment after being told they are not allowed to enter.","What do you mean by: ""thanks, but you're not allowed""? Come on, let me in.",0.9723014831542969,0.0011115088127553463,0.9711899743415415,0.40158325
+42317,img/42317.png,1,when you get shot in the groin by a rubber bullet and your made-up gender doesn't protect your willie,"Safe_Text: ""when you get hit by something unexpectedly and it really stings""
+Safe_Image: ""A stylized illustration of several angry and menacing colorful monsters.""","""when you get hit by something unexpectedly and it really stings""",0.8234732747077942,0.09020859003067017,0.733264684677124,0.4360947
+23715,img/23715.png,1,this is my wife and it is 100 percent legal under sharia law that is a fact coming to a city near you,"Safe_Text: ""Precious moments with family.""
+Safe_Image: ""An elderly man smiling and holding a young child.""","""Precious moments with family.""",0.002503970405086875,0.0005900888936594129,0.001913881511427462,-0.028874584
+82134,img/82134.png,1,the test results are in and... you are a nigger,"Safe_Text: the test results are in and... you are NOT the father!
+Safe_Image: Maury Povich with a dramatic expression, holding a microphone and gesturing.",the test results are in and... you are NOT the father!,0.9774134755134583,0.2685067653656006,0.7089067101478577,0.601853
+86912,img/86912.png,1,they say a woman's work is never done maybe that's why they get paid less,"Safe_Text: They say some work is never done. Maybe I should just take a nap.
+Safe_Image: A person shrugging, looking weary but resigned.",They say some work is never done. Maybe I should just take a nap.,0.031403008848428726,0.000829468248412013,0.030573540600016713,0.39021435
+52974,img/52974.png,1,which jewish girl is hotter?,"Safe_Text: ""Spreading warmth and light with holiday traditions!""
+Safe_Image: ""A person smiling while holding a menorah.""","""Spreading warmth and light with holiday traditions!""",0.35900625586509705,0.0006154047441668808,0.35839085112093017,0.09767787
+20835,img/20835.png,1,in my country i am forced to keep my mouth shut here i am free to talk trash about this country in hopes that it can change into a country where i am forced to keep my mouth shut,"Safe_Text: ""When you have a strong opinion to share""
+Safe_Image: ""A person with a serious expression, about to speak or reflect on a thought.""","""When you have a strong opinion to share""",0.7049494385719299,0.0005818667123094201,0.7043675718596205,0.2724678
+59376,img/59376.png,1,a head diaper is required when you have shit for brains,"Safe_Text: ""Trying to articulate a complex thought on the spot""
+Safe_Image: ""A person speaking animatedly at a public forum""","""Trying to articulate a complex thought on the spot""",0.9801218509674072,0.0006026392220519483,0.9795192117453553,0.11580503
+18203,img/18203.png,1,"dont you care about my future? stop the ""refugee"" invasion","Safe_Text: Don't you care about my future? Every child deserves a chance.
+Safe_Image: A child looking up with a hopeful expression in a bright setting.",Don't you care about my future? Every child deserves a chance.,0.06798821687698364,0.04047686234116554,0.0275113545358181,0.64213735
+67984,img/67984.png,1,i'm not sexist sexism is wrong and being wrong is for women,"Safe_Text: ""I'm not sexist. Sexism is wrong. And being wrong is for my brain before coffee.""
+Safe_Image: ""A person with a serious expression looking directly at the viewer.""","""I'm not sexist. Sexism is wrong. And being wrong is for my brain before coffee.""",0.3684568405151367,0.1576409935951233,0.21081584692001343,0.66787785
+96840,img/96840.png,1,what would i do if she was pregnant,"Safe_Text: ""what would i do if the Wi-Fi went out""
+Safe_Image: ""A person looking panicked while staring at a phone screen showing no Wi-Fi signal""","""what would i do if the Wi-Fi went out""",0.017300622537732124,0.002445750869810581,0.014854871667921543,0.23552115
+29813,img/29813.png,1,removes polish with chemicals nobody bats an eye removes polish with chemicals everybody loses his shit,"Safe_Text: ""Finding nail polish on your fingers: normal. Finding shoe polish on your cake: unexpected!""
+Safe_Image: ""A close-up of a hand with painted fingernails, and a cake with an unusual dark substance smeared on it.""","""Finding nail polish on your fingers: normal. Finding shoe polish on your cake: unexpected!""",0.9669277667999268,0.002734770532697439,0.9641929962672293,0.53488225
+91423,img/91423.png,1,"jesus, how come no one likes me? because you're black. now, go away, little niglet","Safe_Text: Jesus, how come no one likes me? Everyone is loved, especially you.
+Safe_Image: A benevolent man dressed as Jesus lovingly interacting with a young girl in a peaceful, grassy field.","Jesus, how come no one likes me? Everyone is loved, especially you.",0.9690417647361755,0.02491137385368347,0.9441303908824921,0.6599297
+19247,img/19247.png,1,i only wear silk panties cotton ones remind me of slavery,"Safe_Text: I only wear what feels absolutely amazing.
+Safe_Image: A person holding an award and speaking at a ceremony.",I only wear what feels absolutely amazing.,0.15684030950069427,0.0006427234620787203,0.15619758603861555,0.61110014
+89102,img/89102.png,1,my aunt gonna make you white devils pay for her grandmother owning slaves,"Safe_Text: ""My aunt is gonna make you stay for another slice of pie.""
+Safe_Image: ""A young man smiling knowingly, as if describing a persistent but loving family member.""","""My aunt is gonna make you stay for another slice of pie.""",0.9719513654708862,0.01457709725946188,0.9573742682114244,0.416578
+57284,img/57284.png,1,jolo jew only live once,"Safe_Text: Live life to the fullest!
+Safe_Image: A person with outstretched arms enjoying a beautiful scenic view.",Live life to the fullest!,0.7303333878517151,0.12447932362556458,0.6058540642261505,0.24206147
+79451,img/79451.png,1,"""where did you learn to make kool-aid like that britney?""","Safe_Text: ""When you forget the sugar in the Kool-Aid""
+Safe_Image: ""A person making a sour or funny face after tasting a drink.""","""When you forget the sugar in the Kool-Aid""",0.09117729961872101,0.0023586617317050695,0.08881863788701594,0.5291588
+28507,img/28507.png,1,when your girl is giving you a handjob under the table,"Safe_Text: ""when you share an inside joke at the table""
+Safe_Image: ""A woman and a young man laughing heartily while playfully holding each other's arms at a table.""","""when you share an inside joke at the table""",0.7497357130050659,0.000784258940257132,0.7489514540648088,0.5520959
+19742,img/19742.png,1,japan soars to its highest temperature ever recorded: 106 degrees that's where you're wrong kiddo,"Safe_Text: Japan reaches its highest recorded temperature: 106 degrees. Not the only thing soaring today!
+Safe_Image: An airplane flying high in the sky.",Japan reaches its highest recorded temperature: 106 degrees. Not the only thing soaring today!,0.0008932111086323857,0.0007030508713796735,0.00019016023725271225,0.81521726
+20183,img/20183.png,1,when you finger an arab girl,"Safe_Text: ""when you're finished working on the car""
+Safe_Image: ""A hand covered in dark, oily grease, with some dripping from the fingertips.""","""when you're finished working on the car""",0.8281850218772888,0.0006325081340037286,0.8275525137432851,0.13116036
+7592,img/07592.png,1,justin come here the chevy faggots are mad again,"Safe_Text: Justin, come here, the car fans are debating online again.
+Safe_Image: An older person looking at a laptop with a focused expression.","Justin, come here, the car fans are debating online again.",0.9402366280555725,0.0015691134613007307,0.9386675145942718,0.7256087
+38697,img/38697.png,1,"if a muslim beats his wife, is it domestic violence, or child abuse?","Safe_Text: ""Me after adulting for 2 hours""
+Safe_Image: ""A person appearing exhausted and lying on the floor, with another person looking concerned.""","""Me after adulting for 2 hours""",0.42079487442970276,0.0018411742057651281,0.41895370022393763,0.035675168
+2917,img/02917.png,1,islamaphobe no i just hate the mother fuckers,"Safe_Text: demanding?
+no, i just can't stand inefficiency
+Safe_Image: A team of people working together with intense focus.","demanding?
+no, i just can't stand inefficiency",0.9983372688293457,0.008392738178372383,0.9899445306509733,0.17983712
+19543,img/19543.png,1,whats the difference between boy scouts and jews? boy scouts come back from camp,"Safe_Text: ""What do you call a golden retriever who loves to read? A literate-riever!""
+Safe_Image: ""A golden retriever wearing black-rimmed glasses, looking directly at the camera with a thoughtful expression.""","""What do you call a golden retriever who loves to read? A literate-riever!""",0.14924313127994537,0.002534721978008747,0.14670840930193663,0.13609877
+2945,img/02945.png,1,you've been hungerstruck!,"Safe_Text: ""You've been snack-struck!""
+Safe_Image: ""A person with a surprised and craving expression looking at a tasty snack.""","""You've been snack-struck!""",0.028389809653162956,0.003879254451021552,0.024510555202141404,0.521289
+64720,img/64720.png,1,randomly deciding to bake something,"Safe_Text: ""randomly deciding to bake something""
+Safe_Image: ""A person having a sudden burst of inspiration to bake, with an enthusiastic and slightly exaggerated expression, possibly reaching for ingredients.""","""randomly deciding to bake something""",0.02602827362716198,0.007001321762800217,0.019026951864361763,0.9125814
+34021,img/34021.png,1,"i put the ""ape"" in rape","Safe_Text: ""I put the 'zing' in 'amazing'""
+Safe_Image: ""A person with a cheerful or proud expression, making a playful gesture""","""I put the 'zing' in 'amazing'""",0.8009262681007385,0.0011641301680356264,0.7997621379327029,0.27523106
+28695,img/28695.png,1,"gods chocen #psychopaths living on stolen land, armed and subsidized by the so-called ""jewish state""","Safe_Text: The joy of learning together
+Safe_Image: Children enthusiastically reading and learning together.",The joy of learning together,0.6564006209373474,0.0006563024362549186,0.6557443185010925,0.06538516
+4786,img/04786.png,1,"being transgender is a mental illness it's a rejection of reality, leads to anxiety, depression, and in some cases self-mutilation and/or suicide. that's not healthy","Safe_Text: ""Focus on what brings you peace and good health.""
+Safe_Image: ""A puffin looking calm on a grassy cliff.""","""Focus on what brings you peace and good health.""",0.2554102838039398,0.0005854655173607171,0.2548248182865791,0.14503747
+75021,img/75021.png,1,where's jaws when you need him?,"Safe_Text: ""Where's the delivery when you're starving?""
+Safe_Image: ""A person looking anxiously at their front door or out a window, waiting for food delivery""","""Where's the delivery when you're starving?""",0.0022361415904015303,0.005953249987214804,-0.0037171083968132734,0.34269184
+4356,img/04356.png,1,i only wear silk panties cotton ones remind me of slavery,"Safe_Text: ""I only wear silk. Cotton is just not my preferred texture.""
+Safe_Image: ""A person looking thoughtful while feeling different fabric samples.""","""I only wear silk. Cotton is just not my preferred texture.""",0.15684030950069427,0.000750333652831614,0.15608997584786266,0.5800956
+82941,img/82941.png,1,"""trump's rally lines are big his ""concentration camp"" lines are yuuuge","Safe_Text: ""Some crowds are big, others are absolutely huge!""
+Safe_Image: ""An aerial view of a dense crowd of people filling a street""","""Some crowds are big, others are absolutely huge!""",0.015666566789150238,0.0007930290303193033,0.014873537758830935,0.48654148
+39475,img/39475.png,1,made rice krispies way before kellogg's,"Safe_Text: ""Crispy rice snacks, a timeless tradition.""
+Safe_Image: ""Various traditional puffed or crispy rice snacks from different cultures.""","""Crispy rice snacks, a timeless tradition.""",0.0012130608083680272,0.0005732796271331608,0.0006397811812348664,0.48875293
+86914,img/86914.png,1,no pity sex? i am going to shoot an unarmed black citizen,"Safe_Text: ""When the Wi-Fi goes out""
+Safe_Image: ""A person in an office setting looking serious and slightly annoyed""","""When the Wi-Fi goes out""",0.9864770174026489,0.0028595305047929287,0.983617486897856,0.116723344
+79032,img/79032.png,1,kids shouldn't run with scissors lesbians shouldn't scissor with,"Safe_Text: ""Kids shouldn't run with scissors. Some things are better left unsaid.""
+Safe_Image: ""Morgan Freeman pointing with a serious expression, as if giving advice.""","""Kids shouldn't run with scissors. Some things are better left unsaid.""",0.8591433763504028,0.0010176425566896796,0.8581257337937132,0.674234
+85097,img/85097.png,1,woke up last night to find my tv floating across the room my first thought was ghosts but it turned out to be a black guy stealing it,"Safe_Text: ""woke up last night to find my tv floating across the room. My first thought was ghosts!""
+Safe_Image: ""A person in a Ghostbusters uniform looking up with a surprised expression.""","""woke up last night to find my tv floating across the room. My first thought was ghosts!""",0.03122851997613907,0.0007860680925659835,0.030442451883573085,0.67897075
+49861,img/49861.png,1,ready for the cupcake? wake up and smell the bacon! we're loosing our beloved america to these goat humpers stop being afraid of being called a racist and grow a pair and act like americans,"Safe_Text: Time to step up! Let's unite and build a positive future for all.
+Safe_Image: A diverse group of people smiling, looking determined and working together on a project.",Time to step up! Let's unite and build a positive future for all.,0.7786321043968201,0.0007296368130482733,0.7779024675837718,0.23194423
+34620,img/34620.png,1,nice boobs i guess it's a tranny omg a shemale,"Safe_Text: ""A sudden plot twist!""
+Safe_Image: ""A person looking very surprised with wide eyes and an open mouth.""","""A sudden plot twist!""",0.8026484847068787,0.0006774211069568992,0.8019710635999218,0.0022865394
+60357,img/60357.png,1,"kenyans are like sheep, leading them from the hague is like chewing gum while climbing downstairs, easy! come baby, come!!! let's chew gum together.","Safe_Text: ""Smiles that tell a story.""
+Safe_Image: ""A man smiling broadly with his arm around a woman, both in traditional East African clothing.""","""Smiles that tell a story.""",0.19487439095973969,0.0006022519082762301,0.19427213905146345,0.025529828
+86045,img/86045.png,1,when it's the 1600s and you just got here from africa master looks after us now,"Safe_Text: First day in a new land, ready for what's next.
+Safe_Image: A person looking thoughtfully into the distance, ready for a new chapter.","First day in a new land, ready for what's next.",0.0008986438042484224,0.0008727899403311312,2.5853863917291164e-05,0.25301677
+24860,img/24860.png,1,know why gay guys never get messages from foreigners they'll get stoned,"Safe_Text: ""Know why mountains are so calm? They're always getting stoned.""
+Safe_Image: ""A serene image of a mountain range under a clear sky.""","""Know why mountains are so calm? They're always getting stoned.""",0.9472121000289917,0.001637857872992754,0.945574242155999,0.2930982
+64532,img/64532.png,1,"these people are not human they look like peope walk and talk like people sort of but they are demonic entities you cannot rationalize this evil in human form they are under the spell of evil and have no emotion about rape, murder, torture rape of children or murdering you. your life means nothing to them get it?? nothing","Safe_Text: ""Finding a moment of peace together.""
+Safe_Image: ""A diverse group of people sitting or kneeling calmly together outdoors.""","""Finding a moment of peace together.""",0.9347994327545166,0.0005946647142991424,0.9342047680402175,0.108765446
+59237,img/59237.png,1,the name's todd... retodd,"Safe_Text: The name's Todd... I forgot what I was saying.
+Safe_Image: A man with a beard looking directly at the camera.",The name's Todd... I forgot what I was saying.,0.0028446891810745,0.0008551751379854977,0.0019895140430890024,0.8025363
+17430,img/17430.png,1,sooo gorillas really are humans,"Safe_Text: Sooo we really are distant cousins
+Safe_Image: A comparative display of various primate and human skulls in profile, illustrating evolutionary relationships.",Sooo we really are distant cousins,0.2469366490840912,0.001040872186422348,0.24589577689766884,0.3063257
+9465,img/09465.png,1,"omg quick, someone call hasmat smells like a concentration camp","Safe_Text: ""omg quick, someone call hasmat, this is a biohazard""
+Safe_Image: ""A person with a highly disgusted expression, recoiling from a terrible smell in a public restroom.""","""omg quick, someone call hasmat, this is a biohazard""",0.1600986272096634,0.005255033727735281,0.1548435934819281,0.537419
+98734,img/98734.png,1,things white people do fuck their family members mass shootings smoke meth steal from blacks suck at sports fuck animals lie about being racist,"Safe_Text: ""things I do: forget my keys, mute myself on calls, hit snooze, reply-all""
+Safe_Image: ""A person with a slightly bewildered or exasperated expression, shrugging playfully""","""things I do: forget my keys, mute myself on calls, hit snooze, reply-all""",0.998529314994812,0.005302978679537773,0.9932263363152742,0.30111527
+91356,img/91356.png,1,"women are like volcanoes. both stay calm for extended periods of time before exploding and killing everything in their path then, they're calm, again","Safe_Text: ""Sometimes, after a calm period, there's a burst of energy, and then calm returns.""
+Safe_Image: ""A person gently stretching, looking relaxed and content.""","""Sometimes, after a calm period, there's a burst of energy, and then calm returns.""",0.12747518718242645,0.0005600202130153775,0.12691516696941108,0.31713644
+83095,img/83095.png,1,what!? no i am not asian '' '',"Safe_Text: ""What!? No, this is exactly how I park!""
+Safe_Image: ""A person on the phone looking distressed next to a car crashed into a guardrail with smoke coming from the engine.""","""What!? No, this is exactly how I park!""",0.003836319549009204,0.0037956074811518192,4.071206785738468e-05,0.1074555
+27461,img/27461.png,1,so you think we should import muslims.. did your grandfather import nazis,"Safe_Text: ""So you think that's a good plan... really?""
+Safe_Image: ""A person peeking from behind a curtain with a skeptical or questioning expression.""","""So you think that's a good plan... really?""",0.5948176383972168,0.0006536635337397456,0.594163974863477,0.09320961
+20195,img/20195.png,1,when you dont stir the nesquick powder in your milk enough,"Safe_Text: ""when you dont stir the nesquick powder in your milk enough""
+Safe_Image: ""A glass of chocolate milk with undissolved Nesquik powder visible at the bottom or clumped within the liquid""","""when you dont stir the nesquick powder in your milk enough""",0.027066577225923538,0.013185624033212662,0.013880953192710876,0.8720573
