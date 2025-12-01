@@ -1,5 +1,4 @@
 import os
-import re
 import pandas as pd
 import torch
 
@@ -9,12 +8,16 @@ from sentence_transformers import SentenceTransformer, util
 # -----------------------------
 # Config
 # -----------------------------
-INPUT_FILES = [
-    "memes_gemini.csv",
-    "memes_gemini_fewshot.csv",
-    "memes_gemini_basic.csv",
-    "memes_llava.csv",
-]
+# Map model name -> CSV path
+INPUT_FILES = {
+    "gemini": "results/memes_gemini.csv",
+    "gemini_fewshot": "results/memes_gemini_fewshot.csv",
+    "llama": "results/memes_llama.csv",   # if you want it
+    "gemma": "results/memes_gemma_basic.csv",
+    "llava": "results/memes_llava.csv",
+    "gpt": "results/memes_gpt.csv",
+    "claude": "results/memes_claude.csv",
+}
 
 ID_COL = "id"
 IMG_COL = "img"
@@ -30,8 +33,10 @@ NON_REWRITE_BASE = {ID_COL, IMG_COL, LABEL_COL, ORIG_COL}
 device = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Using device: {device}")
 
-sim_model = SentenceTransformer("sentence-transformers/all-mpnet-base-v2",
-                                device=device)
+sim_model = SentenceTransformer(
+    "sentence-transformers/all-mpnet-base-v2",
+    device=device
+)
 tox_model = Detoxify("original", device=device)
 
 
@@ -44,13 +49,14 @@ def extract_safe_text(raw: str) -> str:
       'Safe_Text: ... Safe_Image: ...'
 
     If 'Safe_Text:' is not present, returns the original string stripped.
+    This works for:
+      - Gemini runs where you have Safe_Text + Safe_Image
+      - Plain rewrites from GPT, Claude, LLaVA, etc (no tags)
     """
     if not isinstance(raw, str):
         return ""
 
     s = raw.strip()
-
-    # If we do not have the Safe_Text tag, just return stripped string
     if "Safe_Text:" not in s:
         return s
 
@@ -61,7 +67,6 @@ def extract_safe_text(raw: str) -> str:
     if "Safe_Image:" in after:
         after = after.split("Safe_Image:", 1)[0]
 
-    # Clean up punctuation / whitespace
     return after.strip(" \n\t:-")
 
 
@@ -107,7 +112,6 @@ def add_toxicity_columns(df: pd.DataFrame, orig_col: str, rewrite_clean_col: str
     df["toxicity_before"] = tox_before
     df["toxicity_after"] = tox_after
     df["toxicity_reduction"] = df["toxicity_before"] - df["toxicity_after"]
-
     return df
 
 
@@ -122,7 +126,6 @@ def add_similarity_column(df: pd.DataFrame, orig_col: str, rewrite_clean_col: st
 
     cos_sim_diag = util.cos_sim(emb_orig, emb_new).diagonal()
     df["semantic_similarity"] = cos_sim_diag.cpu().numpy()
-
     return df
 
 
@@ -153,24 +156,22 @@ def make_manual_review_csv(df: pd.DataFrame, model_name: str, orig_col: str,
     if IMG_COL in review_df.columns:
         cols.append(IMG_COL)
 
-    # Use cleaned rewrite text for human rating, not the raw Safe_Text / Safe_Image blob
     cols += [orig_col, rewrite_clean_col]
-
     review_df = review_df[cols].copy()
 
-    # Rename columns to be nice for annotators
+    # Rename for annotators
     review_df = review_df.rename(columns={
         orig_col: "original_text",
         rewrite_clean_col: "rewritten_text",
     })
 
-    # Add empty columns for human ratings
     review_df["rate_coherence_1_5"] = ""
     review_df["rate_relevance_1_5"] = ""
     review_df["rate_positive_tone_1_5"] = ""
     review_df["comments"] = ""
 
-    out_path = f"manual_review_{model_name}.csv"
+    out_path = f"eval/manual_review_{model_name}.csv"
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
     review_df.to_csv(out_path, index=False)
     print(f"    -> Saved manual review template to {out_path}")
 
@@ -181,15 +182,14 @@ def make_manual_review_csv(df: pd.DataFrame, model_name: str, orig_col: str,
 def main():
     all_summaries = []
 
-    for path in INPUT_FILES:
+    for model_name, path in INPUT_FILES.items():
         if not os.path.exists(path):
-            print(f"\n=== Skipping {path}, file not found ===")
+            print(f"\n=== Skipping {model_name}: file not found ({path}) ===")
             continue
 
-        model_name = os.path.splitext(os.path.basename(path))[0]
         print(f"\n=== Evaluating {model_name} ({path}) ===")
 
-        df = pd.read_csv(path, sep=",")  # adjust sep if needed
+        df = pd.read_csv(path)
 
         if ORIG_COL not in df.columns:
             raise ValueError(
@@ -200,31 +200,68 @@ def main():
         rewrite_col = find_rewrite_column(df, path)
         print(f"  - Detected rewrite column: {rewrite_col}")
 
-        # Clean the rewrite column to only keep Safe_Text if present
+        # Clean the rewrite column (handles Safe_Text / Safe_Image or plain text)
         df["rewrite_clean"] = clean_rewrite_column(df, rewrite_col)
 
-        # Compute metrics using the cleaned rewrite text
+        # Compute metrics
         df = add_toxicity_columns(df, ORIG_COL, "rewrite_clean")
         df = add_similarity_column(df, ORIG_COL, "rewrite_clean")
 
         # Save per row metrics
-        out_csv = f"{model_name}_evaluated.csv"
+        os.makedirs("results", exist_ok=True)
+        out_csv = f"results/{model_name}_evaluated.csv"
         df.to_csv(out_csv, index=False)
         print(f"  -> Saved per example metrics to {out_csv}")
 
-        # Summary metrics
+        # Summary row
         summary = summarize_metrics(df, model_name)
         all_summaries.append(summary)
 
         # Manual review CSV
         make_manual_review_csv(df, model_name, ORIG_COL, "rewrite_clean", max_samples=100)
 
+    # Global summary
     if all_summaries:
         summary_df = pd.DataFrame(all_summaries)
-        summary_df.to_csv("model_metrics_summary.csv", index=False)
+        os.makedirs("eval", exist_ok=True)
+        summary_path = "eval/model_metrics_summary.csv"
+        summary_df.to_csv(summary_path, index=False)
+
         print("\n=== Overall summary ===")
         print(summary_df)
-        print("\n-> Saved summary to model_metrics_summary.csv")
+        print(f"\n-> Saved summary to {summary_path}")
+
+        # Extra: compare Gemini vs Gemini few-shot if both are present
+        if {"gemini", "gemini_fewshot"}.issubset(set(summary_df["model"])):
+            print("\n=== Gemini vs Gemini Few-Shot Comparison ===")
+            reg = summary_df[summary_df["model"] == "gemini"].iloc[0]
+            fs = summary_df[summary_df["model"] == "gemini_fewshot"].iloc[0]
+
+            comparison = pd.DataFrame([
+                {
+                    "metric": "mean_toxicity_before",
+                    "gemini": reg["mean_toxicity_before"],
+                    "gemini_fewshot": fs["mean_toxicity_before"],
+                },
+                {
+                    "metric": "mean_toxicity_after",
+                    "gemini": reg["mean_toxicity_after"],
+                    "gemini_fewshot": fs["mean_toxicity_after"],
+                },
+                {
+                    "metric": "mean_toxicity_reduction",
+                    "gemini": reg["mean_toxicity_reduction"],
+                    "gemini_fewshot": fs["mean_toxicity_reduction"],
+                },
+                {
+                    "metric": "mean_semantic_similarity",
+                    "gemini": reg["mean_semantic_similarity"],
+                    "gemini_fewshot": fs["mean_semantic_similarity"],
+                },
+            ])
+            print(comparison.to_string(index=False))
+            comparison.to_csv("eval/model_metrics_summary_v2.csv", index=False)
+            print("\n-> Saved Gemini vs Gemini few-shot comparison to eval/gemini_vs_fewshot_summary.csv")
 
 
 if __name__ == "__main__":
