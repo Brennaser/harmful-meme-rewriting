@@ -12,13 +12,6 @@ Given a meme image and its original caption, the goal is to generate a new capti
 
 * Removes or softens hate speech, toxicity, and offensive content  
 * Keeps the original situation and target of the joke as much as possible  
-* Stays short, punchy, and meme like  
-
-The project explores three model settings:
-
-* Gemini based rewriting  
-* Gemma based rewriting  
-* LLaVA based multimodal rewriting  
 
 Outputs from these models are evaluated with:
 
@@ -47,9 +40,6 @@ Model wrappers for each rewriting approach:
 
 **results/**  
 All generated meme rewrites, cleaned outputs, and evaluated CSVs. Also includes directories storing full safe meme generations.
-
-**venv/**  
-Local virtual environment (not required for repo users).
 
 ---
 
@@ -102,6 +92,4 @@ harmful-meme-rewriting/
 │
 ├── .gitignore
 ├── requirments.txt
-├── venv/                  # local Python environment
-└── (git internal files)
 
