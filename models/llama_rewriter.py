@@ -56,7 +56,7 @@ def setup_hf_login(token: Union[str, None] = None):
 class LlamaRewriter:
     def __init__(
             self,
-            model_id: str = "meta-llama/Llama-2-7b-chat-hf",
+            model_id: str = "TinyLlama/TinyLlama-1.1B-Chat-v1.0",
             device: Union[str, None] = None,
     ):
         if device is None:
@@ -129,7 +129,7 @@ def main():
     parser.add_argument("--output_csv", default="results/memes_llama_chat.csv")
     parser.add_argument(
         "--model_id",
-        default="meta-llama/Llama-2-7b-chat-hf",
+        default="TinyLlama/TinyLlama-1.1B-Chat-v1.0",
         help="Hugging Face model ID for Llama"
     )
     parser.add_argument(
