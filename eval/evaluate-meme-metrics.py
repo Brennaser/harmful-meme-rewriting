@@ -19,7 +19,7 @@ INPUT_FILES = {
     "gemini":         os.path.join(RESULTS_DIR, "memes_gemini.csv"),
     "gemini_fewshot": os.path.join(RESULTS_DIR, "memes_gemini_fewshot.csv"),
     "gemma_basic":    os.path.join(RESULTS_DIR, "memes_gemma_basic.csv"),
-    "llava":          os.path.join(RESULTS_DIR, "memes_llava.csv"),
+    "llava":          os.path.join(RESULTS_DIR, "memes_llava_new.csv"),
     "llama":          os.path.join(RESULTS_DIR, "memes_llama.csv"),
     "gpt":            os.path.join(RESULTS_DIR, "memes_chatgpt.csv"),
     "claude":         os.path.join(RESULTS_DIR, "memes_claude.csv"),
