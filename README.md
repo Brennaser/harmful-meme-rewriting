@@ -41,6 +41,8 @@ Model wrappers for each rewriting approach:
 **results/**  
 All generated meme rewrites, cleaned outputs, and evaluated CSVs. Also includes directories storing full safe meme generations.
 
+Disclaimer: Large language models were used to assist with writing, editing, and troubleshooting code throughout this project. All final decisions, implementations, and validations were performed by the author.
+
 ---
 
 ## Repository Structure
@@ -92,5 +94,3 @@ harmful-meme-rewriting/
 │
 ├── .gitignore
 ├── requirments.txt
-
-Disclaimer: Large language models were used to assist with writing, editing, and troubleshooting code throughout this project. All final decisions, implementations, and validations were performed by the author.
