@@ -93,3 +93,4 @@ harmful-meme-rewriting/
 ├── .gitignore
 ├── requirments.txt
 
+Disclaimer: Large language models were used to assist with writing, editing, and troubleshooting code throughout this project. All final decisions, implementations, and validations were performed by the author.
