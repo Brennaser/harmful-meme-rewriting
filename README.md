@@ -30,3 +30,29 @@ Top level folders:
   ```json
   {"id": "80243", "img": "img/80243.png", "label": 1, "text": "mississippi wind chime"}
 
+├── facebook-meme-subset/
+│   ├── img/                        # Original meme images
+│   ├── train190_subset.jsonl       # JSONL input file for rewriting
+│
+├── llms-to-rewrite-text/
+│   ├── gemini_rewriter.py          # Uses Gemini to rewrite meme text
+│   ├── gemma_rewriter.py           # Uses Gemma (text only) to rewrite memes
+│
+├── image-generation-scripts/
+│   ├── text-overlay.py             # Creates safe meme by overlaying text on original image
+│   ├── generate_safe_memes.py      # Uses diffusion to produce new safe images
+│
+├── text-and-image-results/
+│   ├── generated-images-v1/        # Results for images from unsafe model
+│   ├── generated-images-v1/        # Results for images from better model
+│   ├── memes_llava.csv/            # LLaVA rewritten text (each model has this)
+│
+├── llm-evaluation-scores/
+│   ├── model_metrics_summary.csv   # Summary metrics across models
+│   ├── llama_evaluated.csv         # Toxity score & cosine similarity for LLaVA rewritten text
+│
+├── requirements.txt                # Python dependencies
+├── README.md                       # Main documentation file
+└── .gitignore                      # Files to ignore in version control
+
+
